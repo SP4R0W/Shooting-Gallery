@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://d0477sv5ek51b"]
+
+[ext_resource type="PackedScene" uid="uid://cxieteedfac8d" path="res://src/Target/Target.tscn" id="1_14y2p"]
+[ext_resource type="Script" path="res://src/DuckGame/Duck/Duck.gd" id="1_jdw7i"]
+[ext_resource type="Texture2D" uid="uid://dx573vccdhs2v" path="res://assets/Objects/stick_metal.png" id="2_jmtdu"]
+[ext_resource type="Texture2D" uid="uid://d32lgww5uu03h" path="res://assets/Objects/duck_back.png" id="3_2yqxm"]
+[ext_resource type="Texture2D" uid="uid://cbbojwyr2o8pd" path="res://assets/Objects/duck_brown.png" id="4_0rg55"]
+[ext_resource type="Texture2D" uid="uid://cmdioh0y71dc0" path="res://assets/Objects/duck_white.png" id="5_i1anu"]
+[ext_resource type="Texture2D" uid="uid://cbfxx8n1yjhsr" path="res://assets/Objects/duck_yellow.png" id="6_r3ehp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evwjq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2yqxm")
+}],
+"loop": true,
+"name": &"duck_back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0rg55")
+}],
+"loop": true,
+"name": &"duck_brown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_i1anu")
+}],
+"loop": true,
+"name": &"duck_white",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_r3ehp")
+}],
+"loop": true,
+"name": &"duck_yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weqo1"]
+size = Vector2(128, 104)
+
+[node name="Duck" instance=ExtResource("1_14y2p")]
+script = ExtResource("1_jdw7i")
+direction = null
+speed = null
+is_static = null
+
+[node name="MainPivot" type="Node2D" parent="." index="0"]
+
+[node name="StickPivor" type="Node2D" parent="MainPivot" index="0"]
+position = Vector2(0, 96)
+
+[node name="Stick" type="Sprite2D" parent="MainPivot/StickPivor" index="0"]
+position = Vector2(0, 60)
+texture = ExtResource("2_jmtdu")
+offset = Vector2(0, -61)
+
+[node name="DuckPivot" type="Node2D" parent="MainPivot/StickPivor/Stick" index="0"]
+position = Vector2(0, -156)
+
+[node name="Duck" type="AnimatedSprite2D" parent="MainPivot/StickPivor/Stick/DuckPivot" index="0"]
+position = Vector2(0, 47)
+sprite_frames = SubResource("SpriteFrames_evwjq")
+animation = &"duck_brown"
+offset = Vector2(0, -47)
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_weqo1")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-56, -56)
+scale = Vector2(11.2, 21.6)
+rect = Rect2(0, 0, 10, 10)

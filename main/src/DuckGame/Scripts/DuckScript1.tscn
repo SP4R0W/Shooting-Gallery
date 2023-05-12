@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx0wu6iu162l6"]
+
+[ext_resource type="PackedScene" uid="uid://bckbolduwacrn" path="res://src/GameScript/GameScript.tscn" id="1_rfn3s"]
+[ext_resource type="Script" path="res://src/DuckGame/Scripts/DuckScript1.gd" id="2_b4ee6"]
+[ext_resource type="PackedScene" uid="uid://d0477sv5ek51b" path="res://src/DuckGame/Duck/Duck.tscn" id="3_wqusc"]
+
+[node name="DuckScript1" instance=ExtResource("1_rfn3s")]
+script = ExtResource("2_b4ee6")
+enemy = ExtResource("3_wqusc")
+
+[node name="Left" type="Timer" parent="." index="0"]
+wait_time = 1.5
+
+[node name="Right" type="Timer" parent="." index="1"]
+wait_time = 2.0
+
+[node name="Duration" parent="." index="2"]
+wait_time = 15.0
+
+[connection signal="timeout" from="Left" to="." method="_on_left_timeout"]
+[connection signal="timeout" from="Right" to="." method="_on_right_timeout"]

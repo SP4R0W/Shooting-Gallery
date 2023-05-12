@@ -1,0 +1,566 @@
+[gd_scene load_steps=23 format=3 uid="uid://cx4yv25d8i687"]
+
+[ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="1_d4g72"]
+[ext_resource type="Script" path="res://src/Game/Background/GameBg.gd" id="1_kec60"]
+[ext_resource type="Script" path="res://src/Game/Game.gd" id="1_km67b"]
+[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="2_vsk6e"]
+[ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="3_bfewo"]
+[ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="3_iupnb"]
+[ext_resource type="AudioStream" uid="uid://jdbr2s83jhsu" path="res://assets/Sounds/reload.mp3" id="3_ygdqw"]
+[ext_resource type="Script" path="res://src/Game/UI.gd" id="6_lyed7"]
+[ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="6_rh502"]
+[ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="7_0w3jm"]
+[ext_resource type="Texture2D" uid="uid://dtvqp5aip7n6f" path="res://assets/HUD/text_go.png" id="7_d2c4a"]
+[ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="7_m5cfk"]
+[ext_resource type="PackedScene" uid="uid://dhrvoulea0snt" path="res://src/Game/Weapon/Weapon.tscn" id="10_y0m3m"]
+[ext_resource type="Texture2D" uid="uid://dqy8p88kyx5ne" path="res://assets/HUD/text_ready.png" id="11_4oo7h"]
+[ext_resource type="Texture2D" uid="uid://cihmoy8ugti7a" path="res://assets/HUD/icon_bullet_gold_long.png" id="12_jte1f"]
+[ext_resource type="AudioStream" uid="uid://5q3qmr7h5v0o" path="res://assets/Sounds/fire.mp3" id="15_lfonp"]
+[ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="15_oe6m7"]
+
+[sub_resource type="Animation" id="Animation_bxwb6"]
+resource_name = "CurtainDown"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(3840, 64), Vector2(3840, 1000)]
+}
+
+[sub_resource type="Animation" id="Animation_q7gv3"]
+resource_name = "CurtainUp"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.5),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.5),
+"update": 0,
+"values": [Vector2(3840, 1000), Vector2(3840, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_3yj5y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3840, 64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/UI/Ready:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/UI/Ready:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1805, 1047)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/UI/Ready:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/UI/Go:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 10)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/UI/Go:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1391, 733)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/UI/Go:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer/UI/Ready:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/UI/Go:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_43jkr"]
+resource_name = "ShowText"
+length = 2.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/UI/Ready:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/UI/Ready:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.203063, 2.82843),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/UI/Ready:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.203063, 2.82843),
+"update": 0,
+"values": [Vector2(246, 549), Vector2(1345, 916.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/UI/Go:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.4, 2, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/UI/Go:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.4, 2, 2.4),
+"transitions": PackedFloat32Array(1, 0.210224, 2.92817, 0.196146, 2.92817),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(3, 3), Vector2(1, 1), Vector2(1, 1), Vector2(5, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/UI/Go:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 1.4, 2, 2.4),
+"transitions": PackedFloat32Array(1, 0.210224, 2.92817, 0.196146, 2.92817),
+"update": 0,
+"values": [Vector2(1169, 530), Vector2(1169, 530), Vector2(1642.5, 916), Vector2(1642.5, 916), Vector2(623, 177)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/UI/Ready:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer/UI/Go:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kevnw"]
+_data = {
+"CurtainDown": SubResource("Animation_bxwb6"),
+"CurtainUp": SubResource("Animation_q7gv3"),
+"RESET": SubResource("Animation_3yj5y"),
+"ShowText": SubResource("Animation_43jkr")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_km67b")
+scripts = Array[PackedScene]([null])
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Fire" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_lfonp")
+bus = &"SFX"
+
+[node name="Reload" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_ygdqw")
+bus = &"SFX"
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("1_kec60")
+speed_water1 = Vector2(-2.5, 0)
+speed_water2 = Vector2(-1.5, 0)
+
+[node name="Background" type="ParallaxLayer" parent="Background"]
+
+[node name="Sprite2D" type="TextureRect" parent="Background/Background"]
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("6_rh502")
+
+[node name="Water2" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water2"]
+position = Vector2(100, 1330)
+texture = ExtResource("3_bfewo")
+centered = false
+
+[node name="Water1" type="ParallaxLayer" parent="Background"]
+z_index = 2
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water1"]
+position = Vector2(0, 1430)
+texture = ExtResource("1_d4g72")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+z_index = 500
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_lyed7")
+
+[node name="Ready" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1805.0
+offset_top = 1047.0
+offset_right = 2955.0
+offset_bottom = 1374.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("11_4oo7h")
+
+[node name="Go" type="TextureRect" parent="CanvasLayer/UI"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1391.0
+offset_top = 733.0
+offset_right = 1946.0
+offset_bottom = 1061.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(10, 10)
+texture = ExtResource("7_d2c4a")
+
+[node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/UI"]
+z_index = 4
+layout_mode = 1
+offset_right = 3840.0
+offset_bottom = 64.0
+scale = Vector2(1, 2)
+texture = ExtResource("7_m5cfk")
+
+[node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/UI"]
+z_index = 4
+layout_mode = 1
+offset_right = 3840.0
+offset_bottom = 79.0001
+scale = Vector2(1, 2)
+texture = ExtResource("7_0w3jm")
+expand_mode = 5
+
+[node name="Curtain1" type="TextureRect" parent="CanvasLayer/UI"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -1080.0
+offset_right = 665.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("2_vsk6e")
+
+[node name="Curtain2" type="TextureRect" parent="CanvasLayer/UI"]
+z_index = 3
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -1080.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.00121955
+texture = ExtResource("2_vsk6e")
+flip_h = true
+
+[node name="Floor" type="TextureRect" parent="CanvasLayer/UI"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_top = -512.0
+offset_right = 1920.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 2)
+texture = ExtResource("3_iupnb")
+
+[node name="BottomUI" type="HSplitContainer" parent="CanvasLayer/UI"]
+z_index = 10
+custom_minimum_size = Vector2(3000, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -688.0
+offset_top = -360.0
+offset_right = 688.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+dragger_visibility = 1
+
+[node name="Text" type="HBoxContainer" parent="CanvasLayer/UI/BottomUI"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="CanvasLayer/UI/BottomUI/Text"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "Duck Hunt"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="CanvasLayer/UI/BottomUI/Text"]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "Time: 0
+"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/UI/BottomUI/Text"]
+custom_minimum_size = Vector2(625, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "Score: 0
+"
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="CanvasLayer/UI/BottomUI/Text"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "Rank: NONE
+"
+horizontal_alignment = 1
+
+[node name="AmmoCounter" type="HBoxContainer" parent="CanvasLayer/UI/BottomUI"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Bullet" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Bullet2" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Bullet3" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Weapon" parent="CanvasLayer/UI" instance=ExtResource("10_y0m3m")]
+position = Vector2(2569, 1162)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kevnw")
+}
+
+[node name="Firerate" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Reload" type="Timer" parent="."]
+one_shot = true
+
+[node name="Time" type="Timer" parent="."]
+
+[connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
+[connection signal="timeout" from="Time" to="." method="_on_time_timeout"]

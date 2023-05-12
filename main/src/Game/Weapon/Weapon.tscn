@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhrvoulea0snt"]
+
+[ext_resource type="Texture2D" uid="uid://b28m6nh06gx6n" path="res://assets/Objects/rifle.png" id="1_khf81"]
+[ext_resource type="Script" path="res://src/Game/Weapon/Weapon.gd" id="2_m7ldj"]
+[ext_resource type="Texture2D" uid="uid://oit4n8pavr57" path="res://assets/Objects/rifle_red.png" id="2_pqw14"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wv1pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_khf81")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pqw14")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}]
+
+[node name="Weapon" type="AnimatedSprite2D"]
+z_index = 5
+sprite_frames = SubResource("SpriteFrames_wv1pv")
+centered = false
+script = ExtResource("2_m7ldj")

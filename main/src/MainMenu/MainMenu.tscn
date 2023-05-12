@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7wwqx0rem5wu"]
+
+[ext_resource type="PackedScene" uid="uid://cwy0ow8h334wi" path="res://src/Background/Background.tscn" id="1_dfyai"]
+[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="1_kyhey"]
+[ext_resource type="Script" path="res://src/MainMenu/MainMenu.gd" id="1_vl4cu"]
+[ext_resource type="Texture2D" uid="uid://d0ra2ng77daj0" path="res://assets/HUD/yellow_button03.png" id="3_1uyrf"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_vl4cu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" parent="CanvasLayer" instance=ExtResource("1_dfyai")]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Curtain1" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -1080.0
+offset_right = 665.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("1_kyhey")
+
+[node name="Curtain2" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -1080.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.00121955
+texture = ExtResource("1_kyhey")
+flip_h = true
+
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -22.5
+offset_right = 95.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_1uyrf")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "PLAY GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/Control/PlayButton" to="." method="_on_play_button_pressed"]

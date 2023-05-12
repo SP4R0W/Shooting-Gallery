@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bckbolduwacrn"]
+
+[ext_resource type="Script" path="res://src/GameScript/GameScript.gd" id="1_hbhvg"]
+
+[node name="GameScript" type="Node"]
+script = ExtResource("1_hbhvg")
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
