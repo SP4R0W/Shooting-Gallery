@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcrrbwncxxktp"]
+
+[ext_resource type="Script" path="res://src/Shop/Particles.gd" id="1_f50q0"]
+[ext_resource type="Texture2D" uid="uid://brmqkd2isheau" path="res://assets/Objects/shot_yellow_small.png" id="1_s5eb0"]
+
+[node name="Particles" type="CPUParticles2D"]
+z_index = 100
+emitting = false
+amount = 16
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+local_coords = true
+texture = ExtResource("1_s5eb0")
+emission_shape = 3
+emission_rect_extents = Vector2(540, 196)
+spread = 180.0
+initial_velocity_min = 292.93
+initial_velocity_max = 646.46
+script = ExtResource("1_f50q0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

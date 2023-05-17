@@ -1,18 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8k0t6e1ijj6v"]
+[gd_scene load_steps=18 format=3 uid="uid://cj4oc2q1hd0m1"]
 
-[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="1_kyhey"]
-[ext_resource type="Script" path="res://src/MainMenu/MainMenu.gd" id="1_vl4cu"]
-[ext_resource type="Script" path="res://src/Background/GameBg.gd" id="2_7jl44"]
-[ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="3_nmnsb"]
-[ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="4_kdgbm"]
-[ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="4_pl55y"]
-[ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="5_4m25j"]
-[ext_resource type="Texture2D" uid="uid://bieqt6dt3lbgr" path="res://assets/Stall/cloud2.png" id="5_e2voe"]
-[ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="5_hn5tt"]
-[ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="6_wp01y"]
-[ext_resource type="Texture2D" uid="uid://pa1ygai8qb1a" path="res://assets/HUD/yellow_button02.png" id="10_o8io1"]
-[ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="10_qgr31"]
-[ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="11_g2lh4"]
+[ext_resource type="Script" path="res://src/GameOver/GameOver.gd" id="1_klyja"]
+[ext_resource type="Script" path="res://src/Background/GameBg.gd" id="2_mqoe0"]
+[ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="3_jntqt"]
+[ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="4_mla3w"]
+[ext_resource type="Texture2D" uid="uid://bieqt6dt3lbgr" path="res://assets/Stall/cloud2.png" id="5_0odki"]
+[ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="6_66027"]
+[ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="7_i1171"]
+[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="8_3v573"]
+[ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="9_pvm25"]
+[ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="10_p2vff"]
+[ext_resource type="Texture2D" uid="uid://pa1ygai8qb1a" path="res://assets/HUD/yellow_button02.png" id="11_pdymn"]
+[ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="12_neb8j"]
+[ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="13_v7acq"]
 
 [sub_resource type="Animation" id="Animation_ocs4g"]
 resource_name = "CurtainDown"
@@ -104,11 +104,11 @@ _data = {
 "RESET": SubResource("Animation_5toi8")
 }
 
-[node name="MainMenu" type="Node2D"]
-script = ExtResource("1_vl4cu")
+[node name="GameOver" type="Node2D"]
+script = ExtResource("1_klyja")
 
 [node name="Background" type="ParallaxBackground" parent="."]
-script = ExtResource("2_7jl44")
+script = ExtResource("2_mqoe0")
 speed_water1 = Vector2(-2.5, 0)
 speed_water2 = Vector2(-1.5, 0)
 
@@ -117,59 +117,59 @@ speed_water2 = Vector2(-1.5, 0)
 [node name="Sprite2D" type="TextureRect" parent="Background/Background"]
 offset_right = 3840.0
 offset_bottom = 2160.0
-texture = ExtResource("3_nmnsb")
+texture = ExtResource("3_jntqt")
 
 [node name="Clouds" type="ParallaxLayer" parent="Background"]
 motion_mirroring = Vector2(3840, 0)
 
 [node name="Cloud1" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(100, 500)
-texture = ExtResource("4_pl55y")
+texture = ExtResource("4_mla3w")
 centered = false
 
 [node name="Cloud2" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(638, 288)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Cloud3" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(1024, 464)
-texture = ExtResource("4_pl55y")
+texture = ExtResource("4_mla3w")
 centered = false
 
 [node name="Cloud4" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(1516, 268)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Cloud5" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(1568, 592)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Cloud6" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(1960, 372)
-texture = ExtResource("4_pl55y")
+texture = ExtResource("4_mla3w")
 centered = false
 
 [node name="Cloud7" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(2336, 480)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Cloud8" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(2544, 240)
-texture = ExtResource("4_pl55y")
+texture = ExtResource("4_mla3w")
 centered = false
 
 [node name="Cloud9" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(2884, 436)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Cloud10" type="Sprite2D" parent="Background/Clouds"]
 position = Vector2(3340, 260)
-texture = ExtResource("5_e2voe")
+texture = ExtResource("5_0odki")
 centered = false
 
 [node name="Water2" type="ParallaxLayer" parent="Background"]
@@ -177,7 +177,7 @@ motion_mirroring = Vector2(3840, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Water2"]
 position = Vector2(100, 1330)
-texture = ExtResource("4_kdgbm")
+texture = ExtResource("6_66027")
 centered = false
 
 [node name="Water1" type="ParallaxLayer" parent="Background"]
@@ -186,7 +186,7 @@ motion_mirroring = Vector2(3840, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Background/Water1"]
 position = Vector2(0, 1430)
-texture = ExtResource("5_hn5tt")
+texture = ExtResource("7_i1171")
 centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -198,7 +198,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 
 [node name="Curtain1" type="TextureRect" parent="CanvasLayer/Control"]
 z_index = 4
@@ -210,7 +209,7 @@ offset_top = -1080.0
 offset_right = 665.0
 offset_bottom = 1080.0
 grow_vertical = 2
-texture = ExtResource("1_kyhey")
+texture = ExtResource("8_3v573")
 
 [node name="Curtain2" type="TextureRect" parent="CanvasLayer/Control"]
 z_index = 4
@@ -226,27 +225,8 @@ offset_bottom = 1080.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = -0.00121955
-texture = ExtResource("1_kyhey")
+texture = ExtResource("8_3v573")
 flip_h = true
-
-[node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/Control"]
-z_index = 4
-layout_mode = 0
-offset_right = 3840.0
-offset_bottom = 64.0
-scale = Vector2(1, 2)
-mouse_filter = 2
-texture = ExtResource("5_4m25j")
-
-[node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/Control"]
-z_index = 4
-layout_mode = 0
-offset_right = 3840.0
-offset_bottom = 79.0002
-scale = Vector2(1, 2)
-mouse_filter = 2
-texture = ExtResource("6_wp01y")
-expand_mode = 5
 
 [node name="Floor" type="TextureRect" parent="CanvasLayer/Control"]
 z_index = 2
@@ -263,7 +243,7 @@ offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1, 2)
-texture = ExtResource("10_qgr31")
+texture = ExtResource("9_pvm25")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -285,89 +265,122 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
 theme_override_constants/outline_size = 50
-theme_override_fonts/font = ExtResource("11_g2lh4")
+theme_override_fonts/font = ExtResource("10_p2vff")
 theme_override_font_sizes/font_size = 256
-text = "Shooting Gallery"
+text = "Game Over!"
 horizontal_alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Data" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Level" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "You played: Duck hunt"
+horizontal_alignment = 1
+
+[node name="Shot" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "Enemies shot: 0"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "Your time: 0"
+horizontal_alignment = 1
+
+[node name="Rank" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Data"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("10_o8io1")
+size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/PlayButton"]
+[node name="Rank" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data/Rank"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "Your rank: "
+horizontal_alignment = 1
+
+[node name="Rank2" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data/Rank"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "Gold"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "Your total score: 0"
+horizontal_alignment = 1
+
+[node name="HI" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "You set a new record at place 5"
+horizontal_alignment = 1
+
+[node name="MenuButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("11_pdymn")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/MenuButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_g2lh4")
+theme_override_fonts/font = ExtResource("10_p2vff")
 theme_override_font_sizes/font_size = 96
-text = "PLAY"
+text = "Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionsButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("10_o8io1")
+[node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 64.0
+scale = Vector2(1, 2)
+mouse_filter = 0
+texture = ExtResource("12_neb8j")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/OptionsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_g2lh4")
-theme_override_font_sizes/font_size = 96
-text = "OPTIONS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CreditsButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("10_o8io1")
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/CreditsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_g2lh4")
-theme_override_font_sizes/font_size = 96
-text = "CREDITS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = ExtResource("10_o8io1")
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/ExitButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("11_g2lh4")
-theme_override_font_sizes/font_size = 96
-text = "EXIT"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 79.0002
+scale = Vector2(1, 2)
+texture = ExtResource("13_v7acq")
+expand_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_byuhe")
 }
 
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

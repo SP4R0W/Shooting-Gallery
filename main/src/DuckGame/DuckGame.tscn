@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://6vav4bggf57t"]
+[gd_scene load_steps=7 format=3 uid="uid://6vav4bggf57t"]
 
 [ext_resource type="PackedScene" uid="uid://cx4yv25d8i687" path="res://src/Game/Game.tscn" id="1_oxp7w"]
 [ext_resource type="PackedScene" uid="uid://dx0wu6iu162l6" path="res://src/DuckGame/Scripts/DuckScript1.tscn" id="2_8hrbf"]
 [ext_resource type="PackedScene" uid="uid://x30fdy8fp4lv" path="res://src/DuckGame/Scripts/DuckScript2.tscn" id="3_gk00n"]
+[ext_resource type="PackedScene" uid="uid://c0devppkp067j" path="res://src/DuckGame/Scripts/DuckScript3.tscn" id="4_f3ybg"]
+[ext_resource type="PackedScene" uid="uid://b4lraeor38t41" path="res://src/DuckGame/Scripts/DuckScript4.tscn" id="5_ff41r"]
+[ext_resource type="PackedScene" uid="uid://d3t3rl5x4rjgi" path="res://src/DuckGame/Scripts/DuckScript5.tscn" id="6_kl7ea"]
 
 [node name="DuckGame" instance=ExtResource("1_oxp7w")]
-scripts = Array[PackedScene]([ExtResource("2_8hrbf"), ExtResource("3_gk00n")])
+scripts = Array[PackedScene]([ExtResource("2_8hrbf"), ExtResource("3_gk00n"), ExtResource("4_f3ybg"), ExtResource("5_ff41r"), ExtResource("6_kl7ea"), ExtResource("4_f3ybg")])
+rank_score = {
+"bronze": 5000,
+"gold": 35000,
+"platinum": 60000,
+"silver": 17500
+}
 
-[node name="DuckZone1" type="Node" parent="Background" index="1"]
+[node name="Background" parent="." index="2"]
+speed_water2 = Vector2(1.5, 0)
 
-[node name="DuckZone2" type="Node" parent="Background" index="3"]
+[node name="DuckZone1" type="Node2D" parent="Background" index="2"]
 
-[node name="Ready" parent="CanvasLayer/UI" index="0"]
-offset_left = 1805.0
-offset_top = 1047.0
-offset_right = 2955.0
-offset_bottom = 1374.0
-
-[node name="Go" parent="CanvasLayer/UI" index="1"]
-offset_left = 1391.0
-offset_top = 733.0
-offset_right = 1946.0
-offset_bottom = 1061.0
+[node name="DuckZone2" type="Node2D" parent="Background" index="4"]

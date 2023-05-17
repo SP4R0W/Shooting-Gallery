@@ -1,0 +1,543 @@
+[gd_scene load_steps=25 format=3 uid="uid://dwtum4geu1chh"]
+
+[ext_resource type="Script" path="res://src/LevelSelect/LevelSelect.gd" id="1_psjgu"]
+[ext_resource type="Script" path="res://src/Background/GameBg.gd" id="1_t8ske"]
+[ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="2_desoc"]
+[ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="3_5mgyq"]
+[ext_resource type="Texture2D" uid="uid://bieqt6dt3lbgr" path="res://assets/Stall/cloud2.png" id="4_ck8w1"]
+[ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="5_bnh7b"]
+[ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="6_m2hy4"]
+[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="7_e4mb2"]
+[ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="8_87o0w"]
+[ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="9_uhtbx"]
+[ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="10_gjuie"]
+[ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="11_kguop"]
+[ext_resource type="Texture2D" uid="uid://pa1ygai8qb1a" path="res://assets/HUD/yellow_button02.png" id="12_qj8rk"]
+[ext_resource type="Texture2D" uid="uid://ckx5otcdo1n54" path="res://assets/HUD/panel.png" id="12_vb21v"]
+[ext_resource type="Texture2D" uid="uid://bi51yi1v85yqa" path="res://assets/HUD/yellow_small_panel.png" id="13_e1akp"]
+[ext_resource type="Texture2D" uid="uid://crcl0aesov7g5" path="res://assets/HUD/yellow_panel.png" id="13_e4yr3"]
+[ext_resource type="Texture2D" uid="uid://coeg4s7udafbj" path="res://assets/HUD/money.png" id="13_kbmau"]
+[ext_resource type="Texture2D" uid="uid://behcm526c7p7h" path="res://assets/HUD/grey_sliderLeft.png" id="14_1r27w"]
+[ext_resource type="Texture2D" uid="uid://c5vif32n0ynuq" path="res://assets/HUD/duck_preview.png" id="14_tvmn4"]
+[ext_resource type="Texture2D" uid="uid://bmufrlt3x7cfu" path="res://assets/HUD/grey_sliderRight.png" id="17_bc74a"]
+
+[sub_resource type="Animation" id="Animation_ocs4g"]
+resource_name = "CurtainDown"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(3840, 64), Vector2(3840, 1000)]
+}
+
+[sub_resource type="Animation" id="Animation_8d43u"]
+resource_name = "CurtainUp"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(3840, 1000), Vector2(3840, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_5toi8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3840, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byuhe"]
+_data = {
+"CurtainDown": SubResource("Animation_ocs4g"),
+"CurtainUp": SubResource("Animation_8d43u"),
+"RESET": SubResource("Animation_5toi8")
+}
+
+[node name="LevelSelect" type="Node2D"]
+script = ExtResource("1_psjgu")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("1_t8ske")
+speed_water1 = Vector2(-2.5, 0)
+speed_water2 = Vector2(-1.5, 0)
+
+[node name="Background" type="ParallaxLayer" parent="Background"]
+
+[node name="Sprite2D" type="TextureRect" parent="Background/Background"]
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("2_desoc")
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(100, 500)
+texture = ExtResource("3_5mgyq")
+centered = false
+
+[node name="Cloud2" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(638, 288)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Cloud3" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1024, 464)
+texture = ExtResource("3_5mgyq")
+centered = false
+
+[node name="Cloud4" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1516, 268)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Cloud5" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1568, 592)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Cloud6" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1960, 372)
+texture = ExtResource("3_5mgyq")
+centered = false
+
+[node name="Cloud7" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2336, 480)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Cloud8" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2544, 240)
+texture = ExtResource("3_5mgyq")
+centered = false
+
+[node name="Cloud9" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2884, 436)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Cloud10" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(3340, 260)
+texture = ExtResource("4_ck8w1")
+centered = false
+
+[node name="Water2" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water2"]
+position = Vector2(100, 1330)
+texture = ExtResource("5_bnh7b")
+centered = false
+
+[node name="Water1" type="ParallaxLayer" parent="Background"]
+z_index = 2
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water1"]
+position = Vector2(0, 1430)
+texture = ExtResource("6_m2hy4")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Curtain1" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -1080.0
+offset_right = 665.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("7_e4mb2")
+
+[node name="Curtain2" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -1080.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.00121955
+texture = ExtResource("7_e4mb2")
+flip_h = true
+
+[node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 100
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 64.0
+scale = Vector2(1, 2)
+mouse_filter = 2
+texture = ExtResource("8_87o0w")
+
+[node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 100
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 79.0002
+scale = Vector2(1, 2)
+mouse_filter = 2
+texture = ExtResource("9_uhtbx")
+expand_mode = 5
+
+[node name="Floor" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_top = -512.0
+offset_right = 1920.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 2)
+texture = ExtResource("10_gjuie")
+
+[node name="MoneyPanel" type="CenterContainer" parent="CanvasLayer/Control"]
+z_index = 10
+layout_mode = 0
+offset_left = 75.0
+offset_top = 215.0
+offset_right = 550.0
+offset_bottom = 338.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MoneyPanel"]
+layout_mode = 2
+texture = ExtResource("12_vb21v")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MoneyPanel"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Money" type="TextureRect" parent="CanvasLayer/Control/MoneyPanel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_kbmau")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MoneyPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 52
+text = "x0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1057.5
+offset_top = -905.0
+offset_right = 1057.5
+offset_bottom = 970.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 256
+text = "Select a level:"
+horizontal_alignment = 1
+
+[node name="LevelDesc" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 36
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 96
+text = "Duck Hunt"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Previous" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer"]
+layout_mode = 2
+
+[node name="Previous" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Previous"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_e1akp")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Previous"]
+layout_mode = 2
+texture = ExtResource("14_1r27w")
+
+[node name="LevelImg" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/LevelImg"]
+layout_mode = 2
+texture = ExtResource("13_e4yr3")
+
+[node name="LevelImg" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/LevelImg"]
+layout_mode = 2
+texture = ExtResource("14_tvmn4")
+
+[node name="Next" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer"]
+layout_mode = 2
+
+[node name="Next" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Next"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_e1akp")
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Next"]
+layout_mode = 2
+texture = ExtResource("17_bc74a")
+
+[node name="NormalScores" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/NormalScores"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "high score: 9999999"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/NormalScores"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/NormalScores/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "Rank: "
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/NormalScores/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "Platinum"
+horizontal_alignment = 1
+
+[node name="TaScores" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="Score" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/TaScores"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "TA fastest time: 999"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/TaScores"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/TaScores/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "TA Rank: "
+horizontal_alignment = 1
+
+[node name="Rank" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/TaScores/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 72
+text = "Platinum"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("12_qj8rk")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/PlayButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 84
+text = "NORMAL GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayTA" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/LevelDesc"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("12_qj8rk")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/LevelDesc/PlayTA"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 84
+text = "TIME ATTACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Shop" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("12_qj8rk")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Shop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 96
+text = "SHOP
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("12_qj8rk")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("11_kguop")
+theme_override_font_sizes/font_size = 96
+text = "BACK
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_byuhe")
+}
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Previous/Previous" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/LevelDesc/HBoxContainer/Next/Next" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/LevelDesc/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/LevelDesc/PlayTA" to="." method="_on_play_ta_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,612 @@
+[gd_scene load_steps=22 format=3 uid="uid://cmvp7lerc2ptu"]
+
+[ext_resource type="Script" path="res://src/Shop/Shop.gd" id="1_1fcfg"]
+[ext_resource type="Script" path="res://src/Background/GameBg.gd" id="1_d3n1s"]
+[ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="2_p5hj1"]
+[ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="3_wr03v"]
+[ext_resource type="Texture2D" uid="uid://bieqt6dt3lbgr" path="res://assets/Stall/cloud2.png" id="4_syekl"]
+[ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="5_bsc1y"]
+[ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="6_37rpy"]
+[ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="7_ywj0f"]
+[ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="8_1to3m"]
+[ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="9_6f562"]
+[ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="10_jid04"]
+[ext_resource type="Texture2D" uid="uid://ckx5otcdo1n54" path="res://assets/HUD/panel.png" id="11_f0dch"]
+[ext_resource type="Texture2D" uid="uid://coeg4s7udafbj" path="res://assets/HUD/money.png" id="12_mqy2v"]
+[ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="13_fb28i"]
+[ext_resource type="Texture2D" uid="uid://b4ierfebyoaqi" path="res://assets/HUD/store_panel.png" id="14_37oa4"]
+[ext_resource type="Texture2D" uid="uid://dam2ie4s2epsh" path="res://assets/HUD/yellow_button04.png" id="15_e5f2p"]
+[ext_resource type="Texture2D" uid="uid://pa1ygai8qb1a" path="res://assets/HUD/yellow_button02.png" id="15_pftxo"]
+
+[sub_resource type="Animation" id="Animation_ocs4g"]
+resource_name = "CurtainDown"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2000)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(3840, 64), Vector2(3840, 1000)]
+}
+
+[sub_resource type="Animation" id="Animation_8d43u"]
+resource_name = "CurtainUp"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(0, 2000), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(2.07, 0.1),
+"update": 0,
+"values": [Vector2(3840, 1000), Vector2(3840, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_5toi8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3840, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byuhe"]
+_data = {
+"CurtainDown": SubResource("Animation_ocs4g"),
+"CurtainUp": SubResource("Animation_8d43u"),
+"RESET": SubResource("Animation_5toi8")
+}
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_1fcfg")
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("1_d3n1s")
+speed_water1 = Vector2(-2.5, 0)
+speed_water2 = Vector2(-1.5, 0)
+
+[node name="Background" type="ParallaxLayer" parent="Background"]
+
+[node name="Sprite2D" type="TextureRect" parent="Background/Background"]
+offset_right = 3840.0
+offset_bottom = 2160.0
+texture = ExtResource("2_p5hj1")
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(100, 500)
+texture = ExtResource("3_wr03v")
+centered = false
+
+[node name="Cloud2" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(638, 288)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Cloud3" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1024, 464)
+texture = ExtResource("3_wr03v")
+centered = false
+
+[node name="Cloud4" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1516, 268)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Cloud5" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1568, 592)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Cloud6" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1960, 372)
+texture = ExtResource("3_wr03v")
+centered = false
+
+[node name="Cloud7" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2336, 480)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Cloud8" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2544, 240)
+texture = ExtResource("3_wr03v")
+centered = false
+
+[node name="Cloud9" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2884, 436)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Cloud10" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(3340, 260)
+texture = ExtResource("4_syekl")
+centered = false
+
+[node name="Water2" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water2"]
+position = Vector2(100, 1330)
+texture = ExtResource("5_bsc1y")
+centered = false
+
+[node name="Water1" type="ParallaxLayer" parent="Background"]
+z_index = 2
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Water1"]
+position = Vector2(0, 1430)
+texture = ExtResource("6_37rpy")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Curtain1" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -1080.0
+offset_right = 665.0
+offset_bottom = 1080.0
+grow_vertical = 2
+texture = ExtResource("7_ywj0f")
+
+[node name="Curtain2" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 4
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -1080.0
+offset_bottom = 1080.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.00121955
+texture = ExtResource("7_ywj0f")
+flip_h = true
+
+[node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 100
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 64.0
+scale = Vector2(1, 2)
+mouse_filter = 2
+texture = ExtResource("8_1to3m")
+
+[node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 100
+layout_mode = 0
+offset_right = 3840.0
+offset_bottom = 79.0002
+scale = Vector2(1, 2)
+mouse_filter = 2
+texture = ExtResource("9_6f562")
+expand_mode = 5
+
+[node name="Floor" type="TextureRect" parent="CanvasLayer/Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_top = -512.0
+offset_right = 1920.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 2)
+texture = ExtResource("10_jid04")
+
+[node name="MoneyPanel" type="CenterContainer" parent="CanvasLayer/Control"]
+z_index = 10
+layout_mode = 0
+offset_left = 75.0
+offset_top = 215.0
+offset_right = 550.0
+offset_bottom = 338.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/MoneyPanel"]
+layout_mode = 2
+texture = ExtResource("11_f0dch")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MoneyPanel"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Money" type="TextureRect" parent="CanvasLayer/Control/MoneyPanel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_mqy2v")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/MoneyPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 52
+text = "x0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1057.5
+offset_top = -905.0
+offset_right = 1057.5
+offset_bottom = 970.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 256
+text = "upgrade shop:"
+horizontal_alignment = 1
+
+[node name="Mag" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Mag"]
+layout_mode = 2
+texture = ExtResource("14_37oa4")
+
+[node name="Items" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Ammo count Upgrade"
+horizontal_alignment = 1
+
+[node name="Upgrade" type="Label" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Current Upgrade: 0/3"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Price" type="Label" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Price: 100"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_mqy2v")
+
+[node name="No" type="Label" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "You have the max upgrade!"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("15_e5f2p")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items/BuyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Buy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reload" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Reload"]
+layout_mode = 2
+texture = ExtResource("14_37oa4")
+
+[node name="Items" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Reload Speed Upgrade"
+horizontal_alignment = 1
+
+[node name="Upgrade" type="Label" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Current Upgrade: 0/3"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Price" type="Label" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Price: 100"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_mqy2v")
+
+[node name="No" type="Label" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "You have the max upgrade!"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("15_e5f2p")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items/BuyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Buy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Firerate" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Firerate"]
+layout_mode = 2
+texture = ExtResource("14_37oa4")
+
+[node name="Items" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "FIRERATE Upgrade"
+horizontal_alignment = 1
+
+[node name="Upgrade" type="Label" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Current Upgrade: 0/3"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Price" type="Label" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Price: 100"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_mqy2v")
+
+[node name="No" type="Label" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "You have the max upgrade!"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("15_e5f2p")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items/BuyButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 48
+text = "Buy"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="BackButton" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("15_pftxo")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("13_fb28i")
+theme_override_font_sizes/font_size = 96
+text = "BACK
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_byuhe")
+}
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Mag/TextureRect/Items/BuyButton" to="." method="_on_buy_mag_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Reload/TextureRect/Items/BuyButton" to="." method="_on_buy_reload_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Firerate/TextureRect/Items/BuyButton" to="." method="_on_buy_fire_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

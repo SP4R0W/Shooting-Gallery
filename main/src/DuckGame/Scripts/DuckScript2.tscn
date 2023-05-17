@@ -9,13 +9,13 @@ script = ExtResource("2_tqbvg")
 enemy = ExtResource("3_5b28m")
 
 [node name="Duration" parent="." index="0"]
-wait_time = 15.0
+wait_time = 25.0
 
 [node name="Left" type="Timer" parent="." index="1"]
-wait_time = 1.25
+wait_time = 1.15
 
 [node name="Right" type="Timer" parent="." index="2"]
-wait_time = 1.75
+wait_time = 1.5
 
 [connection signal="timeout" from="Left" to="." method="_on_left_timeout"]
 [connection signal="timeout" from="Right" to="." method="_on_right_timeout"]

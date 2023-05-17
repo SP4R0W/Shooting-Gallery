@@ -1,15 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://cx4yv25d8i687"]
+[gd_scene load_steps=29 format=3 uid="uid://cx4yv25d8i687"]
 
 [ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="1_d4g72"]
-[ext_resource type="Script" path="res://src/Game/Background/GameBg.gd" id="1_kec60"]
 [ext_resource type="Script" path="res://src/Game/Game.gd" id="1_km67b"]
 [ext_resource type="Texture2D" uid="uid://d3gyjk2q3x5nm" path="res://assets/Stall/curtain.png" id="2_vsk6e"]
 [ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="3_bfewo"]
 [ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="3_iupnb"]
 [ext_resource type="AudioStream" uid="uid://jdbr2s83jhsu" path="res://assets/Sounds/reload.mp3" id="3_ygdqw"]
+[ext_resource type="Script" path="res://src/Background/GameBg.gd" id="4_cb74g"]
+[ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="6_aqdhe"]
 [ext_resource type="Script" path="res://src/Game/UI.gd" id="6_lyed7"]
 [ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="6_rh502"]
 [ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="7_0w3jm"]
+[ext_resource type="Texture2D" uid="uid://bieqt6dt3lbgr" path="res://assets/Stall/cloud2.png" id="7_7voq1"]
 [ext_resource type="Texture2D" uid="uid://dtvqp5aip7n6f" path="res://assets/HUD/text_go.png" id="7_d2c4a"]
 [ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="7_m5cfk"]
 [ext_resource type="PackedScene" uid="uid://dhrvoulea0snt" path="res://src/Game/Weapon/Weapon.tscn" id="10_y0m3m"]
@@ -17,6 +19,98 @@
 [ext_resource type="Texture2D" uid="uid://cihmoy8ugti7a" path="res://assets/HUD/icon_bullet_gold_long.png" id="12_jte1f"]
 [ext_resource type="AudioStream" uid="uid://5q3qmr7h5v0o" path="res://assets/Sounds/fire.mp3" id="15_lfonp"]
 [ext_resource type="FontFile" uid="uid://b64smw5j517u6" path="res://assets/Fonts/Frogie-Regular.ttf" id="15_oe6m7"]
+
+[sub_resource type="Animation" id="Animation_jydnk"]
+resource_name = "Combo"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.840896, 0.757858, 0.840896, 0.707107),
+"update": 0,
+"values": [-0.0872665, 0.0, 0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ptou4"]
+resource_name = "Fade_out"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1e-05, 1e-05),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_sjwnk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0872665]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cb0q8"]
+_data = {
+"Combo": SubResource("Animation_jydnk"),
+"Fade_out": SubResource("Animation_ptou4"),
+"RESET": SubResource("Animation_sjwnk")
+}
 
 [sub_resource type="Animation" id="Animation_bxwb6"]
 resource_name = "CurtainDown"
@@ -322,7 +416,7 @@ stream = ExtResource("3_ygdqw")
 bus = &"SFX"
 
 [node name="Background" type="ParallaxBackground" parent="."]
-script = ExtResource("1_kec60")
+script = ExtResource("4_cb74g")
 speed_water1 = Vector2(-2.5, 0)
 speed_water2 = Vector2(-1.5, 0)
 
@@ -332,6 +426,59 @@ speed_water2 = Vector2(-1.5, 0)
 offset_right = 3840.0
 offset_bottom = 2160.0
 texture = ExtResource("6_rh502")
+
+[node name="Clouds" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(100, 500)
+texture = ExtResource("6_aqdhe")
+centered = false
+
+[node name="Cloud2" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(638, 288)
+texture = ExtResource("7_7voq1")
+centered = false
+
+[node name="Cloud3" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1024, 464)
+texture = ExtResource("6_aqdhe")
+centered = false
+
+[node name="Cloud4" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1516, 268)
+texture = ExtResource("7_7voq1")
+centered = false
+
+[node name="Cloud5" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1568, 592)
+texture = ExtResource("7_7voq1")
+centered = false
+
+[node name="Cloud6" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(1960, 372)
+texture = ExtResource("6_aqdhe")
+centered = false
+
+[node name="Cloud7" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2336, 480)
+texture = ExtResource("7_7voq1")
+centered = false
+
+[node name="Cloud8" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2544, 240)
+texture = ExtResource("6_aqdhe")
+centered = false
+
+[node name="Cloud9" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(2884, 436)
+texture = ExtResource("7_7voq1")
+centered = false
+
+[node name="Cloud10" type="Sprite2D" parent="Background/Clouds"]
+position = Vector2(3340, 260)
+texture = ExtResource("7_7voq1")
+centered = false
 
 [node name="Water2" type="ParallaxLayer" parent="Background"]
 motion_mirroring = Vector2(3840, 0)
@@ -411,7 +558,7 @@ texture = ExtResource("7_m5cfk")
 z_index = 4
 layout_mode = 1
 offset_right = 3840.0
-offset_bottom = 79.0001
+offset_bottom = 79.0
 scale = Vector2(1, 2)
 texture = ExtResource("7_0w3jm")
 expand_mode = 5
@@ -518,14 +665,27 @@ text = "Score: 0
 "
 horizontal_alignment = 1
 
-[node name="Rank" type="Label" parent="CanvasLayer/UI/BottomUI/Text"]
-custom_minimum_size = Vector2(600, 0)
+[node name="Rank" type="HBoxContainer" parent="CanvasLayer/UI/BottomUI/Text"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="Rank" type="Label" parent="CanvasLayer/UI/BottomUI/Text/Rank"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
 theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("15_oe6m7")
 theme_override_font_sizes/font_size = 96
-text = "Rank: NONE
+text = "Rank: 
+"
+horizontal_alignment = 1
+
+[node name="Rank2" type="Label" parent="CanvasLayer/UI/BottomUI/Text/Rank"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0.14902, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "NONE
 "
 horizontal_alignment = 1
 
@@ -534,16 +694,61 @@ layout_mode = 2
 size_flags_horizontal = 8
 
 [node name="Bullet" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
 layout_mode = 2
 texture = ExtResource("12_jte1f")
 
 [node name="Bullet2" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
 layout_mode = 2
 texture = ExtResource("12_jte1f")
 
 [node name="Bullet3" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
 layout_mode = 2
 texture = ExtResource("12_jte1f")
+
+[node name="Bullet4" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Bullet5" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Bullet6" type="TextureRect" parent="CanvasLayer/UI/BottomUI/AmmoCounter"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_jte1f")
+
+[node name="Combo" type="Label" parent="CanvasLayer/UI"]
+visible = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -231.5
+offset_top = 300.0
+offset_right = 231.5
+offset_bottom = 400.0
+grow_horizontal = 2
+rotation = -0.0872665
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(500, 0)
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 96
+text = "Combo x2"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Combo"]
+libraries = {
+"": SubResource("AnimationLibrary_cb0q8")
+}
 
 [node name="Weapon" parent="CanvasLayer/UI" instance=ExtResource("10_y0m3m")]
 position = Vector2(2569, 1162)
@@ -562,5 +767,10 @@ one_shot = true
 
 [node name="Time" type="Timer" parent="."]
 
+[node name="Combo" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="Time" to="." method="_on_time_timeout"]
+[connection signal="timeout" from="Combo" to="." method="_on_combo_timeout"]

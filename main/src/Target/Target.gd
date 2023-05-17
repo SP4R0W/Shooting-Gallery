@@ -3,20 +3,28 @@ extends Node2D
 
 signal targeted(enemy: Target)
 signal not_targeted(enemy: Target)
+signal killed(enemy: Target)
 
 @export var kill_score: int = 100
 @export var direction: Vector2 = Vector2(1,0)
 @export var speed: float = 500
+
 @export var is_static: bool = false:
 	set(val):
 		is_static = val
 		set_physics_process(!is_static)
+
+@export var static_duration: float = 1.0:
+	set(val):
+		static_duration = val
+		$GoneTimer.wait_time = static_duration
 
 @onready var label_scene = preload("res://src/Target/KillLabel.tscn")
 
 var _is_dead: bool = false
 
 func _ready():
+	Globals.game.total_spawned += 1
 	set_physics_process(!is_static)
 
 	targeted.connect(Globals.game._on_enemy_targeted)
@@ -44,12 +52,26 @@ func show_score_text():
 	var label = label_scene.instantiate()
 	Globals.game.add_child(label)
 	label.global_position = global_position
-	label.set_score_text(kill_score)
+
+	var score_text = kill_score * Globals.game.combo if Globals.game.combo > 1 else kill_score
+
+	label.set_score_text(score_text)
+
+func animator():
+	pass
+
+func enemy_gone():
+	pass
 
 func kill():
 	if not _is_dead:
+		killed.emit(self)
 		show_score_text()
 
 		_is_dead = true
 
 		queue_free()
+
+
+func _on_gone_timer_timeout():
+	enemy_gone()

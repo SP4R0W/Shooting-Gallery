@@ -22,6 +22,11 @@ config/icon="res://icon.svg"
 
 Globals="*res://src/Global/Globals.gd"
 Composer="*res://src/Composer/Composer.gd"
+SaveData="*res://src/Global/SaveData.gd"
+
+[debug]
+
+settings/stdout/verbose_stdout=true
 
 [display]
 
