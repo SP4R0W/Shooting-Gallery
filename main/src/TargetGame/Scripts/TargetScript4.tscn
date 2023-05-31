@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvfq66viprhn0"]
+
+[ext_resource type="PackedScene" uid="uid://bckbolduwacrn" path="res://src/GameScript/GameScript.tscn" id="1_7nqak"]
+[ext_resource type="Script" path="res://src/TargetGame/Scripts/TargetScript4.gd" id="2_2toj2"]
+[ext_resource type="PackedScene" uid="uid://dy1d74wj5wrod" path="res://src/TargetGame/Target/target.tscn" id="3_t2qn3"]
+
+[node name="TargetScript4" instance=ExtResource("1_7nqak")]
+script = ExtResource("2_2toj2")
+enemy = ExtResource("3_t2qn3")
+
+[node name="PositionsLeft" type="Node" parent="." index="0"]
+
+[node name="1" type="Marker2D" parent="PositionsLeft" index="0"]
+position = Vector2(-175, 350)
+
+[node name="2" type="Marker2D" parent="PositionsLeft" index="1"]
+position = Vector2(-175, 500)
+
+[node name="3" type="Marker2D" parent="PositionsLeft" index="2"]
+position = Vector2(-175, 650)
+
+[node name="4" type="Marker2D" parent="PositionsLeft" index="3"]
+position = Vector2(-175, 800)
+
+[node name="5" type="Marker2D" parent="PositionsLeft" index="4"]
+position = Vector2(-175, 950)
+
+[node name="6" type="Marker2D" parent="PositionsLeft" index="5"]
+position = Vector2(-175, 1100)
+
+[node name="PositionsRight" type="Node" parent="." index="1"]
+
+[node name="1" type="Marker2D" parent="PositionsRight" index="0"]
+position = Vector2(4015, 350)
+
+[node name="2" type="Marker2D" parent="PositionsRight" index="1"]
+position = Vector2(4015, 500)
+
+[node name="3" type="Marker2D" parent="PositionsRight" index="2"]
+position = Vector2(4015, 650)
+
+[node name="4" type="Marker2D" parent="PositionsRight" index="3"]
+position = Vector2(4015, 800)
+
+[node name="5" type="Marker2D" parent="PositionsRight" index="4"]
+position = Vector2(4015, 950)
+
+[node name="6" type="Marker2D" parent="PositionsRight" index="5"]
+position = Vector2(4015, 1100)
+
+[node name="PositionsUp" type="Node" parent="." index="2"]
+
+[node name="1" type="Marker2D" parent="PositionsUp" index="0"]
+position = Vector2(650, -150)
+
+[node name="2" type="Marker2D" parent="PositionsUp" index="1"]
+position = Vector2(800, -150)
+
+[node name="3" type="Marker2D" parent="PositionsUp" index="2"]
+position = Vector2(950, -150)
+
+[node name="4" type="Marker2D" parent="PositionsUp" index="3"]
+position = Vector2(1100, -150)
+
+[node name="5" type="Marker2D" parent="PositionsUp" index="4"]
+position = Vector2(1250, -150)
+
+[node name="6" type="Marker2D" parent="PositionsUp" index="5"]
+position = Vector2(1400, -150)
+
+[node name="7" type="Marker2D" parent="PositionsUp" index="6"]
+position = Vector2(1550, -150)
+
+[node name="8" type="Marker2D" parent="PositionsUp" index="7"]
+position = Vector2(1700, -150)
+
+[node name="9" type="Marker2D" parent="PositionsUp" index="8"]
+position = Vector2(1850, -150)
+
+[node name="10" type="Marker2D" parent="PositionsUp" index="9"]
+position = Vector2(2000, -150)
+
+[node name="11" type="Marker2D" parent="PositionsUp" index="10"]
+position = Vector2(2150, -150)
+
+[node name="12" type="Marker2D" parent="PositionsUp" index="11"]
+position = Vector2(2300, -150)
+
+[node name="13" type="Marker2D" parent="PositionsUp" index="12"]
+position = Vector2(2450, -150)
+
+[node name="14" type="Marker2D" parent="PositionsUp" index="13"]
+position = Vector2(2600, -150)
+
+[node name="15" type="Marker2D" parent="PositionsUp" index="14"]
+position = Vector2(2750, -150)
+
+[node name="16" type="Marker2D" parent="PositionsUp" index="15"]
+position = Vector2(2900, -150)
+
+[node name="17" type="Marker2D" parent="PositionsUp" index="16"]
+position = Vector2(3050, -150)
+
+[node name="Duration" parent="." index="3"]
+wait_time = 25.0
+
+[node name="Left" type="Timer" parent="." index="4"]
+
+[node name="Right" type="Timer" parent="." index="5"]
+wait_time = 1.25
+
+[node name="Up" type="Timer" parent="." index="6"]
+wait_time = 1.5
+
+[connection signal="timeout" from="Left" to="." method="_on_left_timeout"]
+[connection signal="timeout" from="Right" to="." method="_on_right_timeout"]
+[connection signal="timeout" from="Up" to="." method="_on_up_timeout"]

@@ -11,6 +11,16 @@ signal script_ended()
 var _enemies: int = 0
 var total_enemies: int = 0
 
+func pause():
+	for child in get_children():
+		if child is Timer:
+			child.paused = true
+
+func unpause():
+	for child in get_children():
+		if child is Timer:
+			child.paused = false
+
 func activate():
 	Globals.active_script = self
 
@@ -41,11 +51,11 @@ func _create_enemy() -> Target:
 
 func enemy_killed():
 	_enemies -= 1
-	if _enemies <= 0 and duration_timer.time_left <= 0:
+	if _enemies == 0 and duration_timer.time_left <= 0:
 		deactive()
 
 func _on_duration_timeout():
 	_deactivate_timers()
 
-	if _enemies <= 0:
+	if _enemies == 0:
 		deactive()

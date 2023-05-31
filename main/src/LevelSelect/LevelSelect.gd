@@ -17,25 +17,32 @@ extends Node2D
 @onready var is_transitioning = true
 
 enum LEVELS {
-	DUCK=1
+	DUCK=1,
+	TARGET=2
 }
 
 const LEVEL_PREFIXED = {
-	LEVELS.DUCK:"duck"
+	LEVELS.DUCK:"duck",
+	LEVELS.TARGET:"target",
 }
 
 const LEVEL_TITLE = {
-	LEVELS.DUCK:"DUCK HUNT"
+	LEVELS.DUCK:"DUCK HUNT",
+	LEVELS.TARGET:"TARGET GALLERY",
 }
 
 const LEVEL_IMAGE = {
-	LEVELS.DUCK:"res://assets/HUD/duck_preview.png"
+	LEVELS.DUCK:"res://assets/HUD/duck_preview.png",
+	LEVELS.TARGET:"res://assets/HUD/target_preview.png",
 }
 
 var level = LEVELS.DUCK
 var level_prefix = LEVEL_PREFIXED[level]
+@onready var menu_theme: AudioStreamPlayer = Globals.root.get_node("MenuTheme")
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_custom_mouse_cursor(null,Input.CURSOR_ARROW,Vector2(0,0))
 	bg.play_animation = false
 
 	animator.play("CurtainUp")
@@ -45,6 +52,9 @@ func _ready():
 	money_text.text = "x" + str(SaveData.stats["money"])
 
 	await animator.animation_finished
+
+	if not menu_theme.playing:
+		menu_theme.play()
 
 	is_transitioning = false
 	bg.play_animation = true
@@ -57,9 +67,14 @@ func _unhandled_input(event):
 		animator.seek(2)
 		animator.animation_finished.emit()
 
+		if not menu_theme.playing:
+			menu_theme.play()
+
 func _on_back_button_pressed():
 	if is_transitioning:
 		return
+
+	Globals.root.get_node("Click").play()
 
 	bg.play_animation = false
 	is_transitioning = true
@@ -105,6 +120,8 @@ func _on_shop_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 	Globals.ta_game = false
@@ -119,32 +136,44 @@ func _on_play_button_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 	Globals.ta_game = false
+	Globals.level_id = level_prefix
+	Globals.end_level = LEVEL_TITLE[level]
 
 	animator.play("CurtainDown")
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/DuckGame/DuckGame.tscn",{"is_animated":true,"animation":1})
+	menu_theme.stop()
+
+	Composer.goto_scene(Globals.LEVEL_PATHS[level_prefix],{"is_animated":true,"animation":1})
 
 
 func _on_play_ta_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 	Globals.ta_game = true
+	Globals.level_id = level_prefix
+	Globals.end_level = LEVEL_TITLE[level]
 
 	animator.play("CurtainDown")
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/DuckGame/DuckGame.tscn",{"is_animated":true,"animation":1})
+	Composer.goto_scene(Globals.LEVEL_PATHS[level_prefix],{"is_animated":true,"animation":1})
 
 func _draw_level():
+	level_prefix = LEVEL_PREFIXED[level]
+
 	hi_label.text = "High Score: " + str(SaveData.stats[level_prefix + "_hi"])
 	ta_hi_label.text = "TA Fastest Time: " + str(SaveData.stats[level_prefix + "_ta_hi"])
 
@@ -152,3 +181,24 @@ func _draw_level():
 	level_image.texture = load(LEVEL_IMAGE[level])
 
 	_write_ranks()
+
+
+func _on_next_pressed():
+	if is_transitioning:
+		return
+
+	Globals.root.get_node("Click").play()
+
+	level = LEVELS.TARGET if level == LEVELS.DUCK else LEVELS.DUCK
+
+	_draw_level()
+
+func _on_previous_pressed():
+	if is_transitioning:
+		return
+
+	Globals.root.get_node("Click").play()
+
+	level = LEVELS.DUCK if level == LEVELS.TARGET else LEVELS.TARGET
+
+	_draw_level()

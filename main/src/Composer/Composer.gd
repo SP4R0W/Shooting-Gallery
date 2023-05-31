@@ -45,7 +45,6 @@ func deffered_goto_scene(scene: String,args: Dictionary = {}) -> void:
 			await fade_in_tween.finished
 
 			fade_in_tween.kill()
-			print(current_scene.name)
 			Globals.root.get_node(NodePath(current_scene.name)).queue_free()
 
 		var new_scene: PackedScene = load(scene)

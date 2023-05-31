@@ -27,6 +27,8 @@ func _on_back_button_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 

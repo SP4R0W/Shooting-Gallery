@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/Target/Target.gd" id="1_27ceu"]
 
-[node name="Target" type="Node2D"]
+[node name="Target" type="Node2D" groups=["target"]]
 script = ExtResource("1_27ceu")
 
 [node name="Hitbox" type="Area2D" parent="."]

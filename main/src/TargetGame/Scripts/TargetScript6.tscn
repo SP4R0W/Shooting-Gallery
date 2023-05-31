@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://05ifdebp55ya"]
+
+[ext_resource type="PackedScene" uid="uid://bckbolduwacrn" path="res://src/GameScript/GameScript.tscn" id="1_7hpae"]
+[ext_resource type="Script" path="res://src/TargetGame/Scripts/TargetScript6.gd" id="2_bvy5v"]
+[ext_resource type="PackedScene" uid="uid://dy1d74wj5wrod" path="res://src/TargetGame/Target/target.tscn" id="3_4c6fv"]
+
+[node name="TargetScript6" instance=ExtResource("1_7hpae")]
+script = ExtResource("2_bvy5v")
+enemy = ExtResource("3_4c6fv")
+
+[node name="Duration" parent="." index="0"]
+wait_time = 3.0
+
+[node name="SpawnTimer" type="Timer" parent="." index="1"]
+one_shot = true
+
+[node name="Positions" type="Node" parent="." index="2"]
+
+[node name="1" type="Marker2D" parent="Positions" index="0"]
+position = Vector2(600, 925)
+
+[node name="2" type="Marker2D" parent="Positions" index="1"]
+position = Vector2(1100, 925)
+
+[node name="3" type="Marker2D" parent="Positions" index="2"]
+position = Vector2(1600, 925)
+
+[node name="4" type="Marker2D" parent="Positions" index="3"]
+position = Vector2(2100, 925)
+
+[node name="5" type="Marker2D" parent="Positions" index="4"]
+position = Vector2(2600, 925)
+
+[node name="6" type="Marker2D" parent="Positions" index="5"]
+position = Vector2(3100, 925)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

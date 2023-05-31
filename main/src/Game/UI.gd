@@ -28,6 +28,10 @@ func _ready():
 	Globals.game.connect("bullets_changed",_update_bullets)
 	Globals.game.connect("time_updated",_update_time)
 
+	if Globals.ta_game:
+		score_text_value = Globals.game._score
+		_update_score()
+
 	for x in range(Globals.game.max_bullets):
 		ammo_counter.get_child(x).show()
 
@@ -45,7 +49,12 @@ func _process(delta):
 
 	if update_value > 0:
 		score_to_update -= update_value
-		score_text_value += update_value
+
+		if !Globals.ta_game:
+			score_text_value += update_value
+		else:
+			score_text_value -= update_value
+
 		_update_score()
 
 		score_update_ended.emit()
@@ -54,7 +63,7 @@ func show_ui():
 	ui_panel.show()
 
 func _update_score():
-	score_text.text = "Score: " + str(score_text_value)
+	score_text.text = "Score: " + str(clamp(score_text_value,0,INF))
 
 func _update_bullets(bullet_amount: int):
 	for x in range(0,Globals.game.max_bullets):

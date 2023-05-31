@@ -1,9 +1,7 @@
 class_name Target
 extends Node2D
 
-signal targeted(enemy: Target)
-signal not_targeted(enemy: Target)
-signal killed(enemy: Target)
+signal killed(target: Target)
 
 @export var kill_score: int = 100
 @export var direction: Vector2 = Vector2(1,0)
@@ -21,14 +19,17 @@ signal killed(enemy: Target)
 
 @onready var label_scene = preload("res://src/Target/KillLabel.tscn")
 
+var _is_mouse_inside: bool = false
 var _is_dead: bool = false
+var _is_paused: bool = false
+var _has_paused_animation: bool = false
 
 func _ready():
 	Globals.game.total_spawned += 1
 	set_physics_process(!is_static)
+	set_process_unhandled_input(false)
 
-	targeted.connect(Globals.game._on_enemy_targeted)
-	not_targeted.connect(Globals.game._on_enemy_not_targeted)
+	killed.connect(Globals.game._on_enemy_killed)
 
 	_on_ready()
 
@@ -38,15 +39,29 @@ func _on_ready():
 func _physics_process(delta):
 	global_position += direction * speed * delta
 
+func _unhandled_input(event):
+	if not Globals.game.can_shoot || _is_paused:
+		return
+
+	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed() && _is_mouse_inside:
+		kill()
+
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	Globals.active_script.enemy_killed()
 	queue_free()
 
 func _on_hitbox_mouse_entered():
-	targeted.emit(self)
+	if _is_paused:
+		_is_mouse_inside = false
+		set_process_unhandled_input(false)
+		return
+
+	_is_mouse_inside = true
+	set_process_unhandled_input(true)
 
 func _on_hitbox_mouse_exited():
-	not_targeted.emit(self)
+	_is_mouse_inside = false
+	set_process_unhandled_input(false)
 
 func show_score_text():
 	var label = label_scene.instantiate()
@@ -56,9 +71,6 @@ func show_score_text():
 	var score_text = kill_score * Globals.game.combo if Globals.game.combo > 1 else kill_score
 
 	label.set_score_text(score_text)
-
-func animator():
-	pass
 
 func enemy_gone():
 	pass
@@ -75,3 +87,28 @@ func kill():
 
 func _on_gone_timer_timeout():
 	enemy_gone()
+
+func pause():
+	_is_paused = true
+	_has_paused_animation = false
+
+	set_physics_process(false)
+	set_process_unhandled_input(false)
+
+	$GoneTimer.paused = true
+
+	var anim: AnimationPlayer = get_node("AnimationPlayer")
+	if anim.is_playing():
+		_has_paused_animation = true
+		anim.pause()
+
+func unpause():
+	_is_paused = false
+
+	set_physics_process(true)
+	set_process_unhandled_input(true)
+
+	$GoneTimer.paused = false
+
+	if _has_paused_animation:
+		get_node("AnimationPlayer").play()

@@ -61,9 +61,9 @@ func _spawn_duck():
 
 	if point != null:
 		duck.queue_free()
-		_spawn_duck()
+		return
 
-	point = duck
+	duck_spawn_points_1[duck_spawn_points_1.keys()[position]] = duck
 	duck_spawn_zone_1.add_child(duck)
 	duck.global_position = duck_spawn_points_1.keys()[position].global_position
 
@@ -83,13 +83,12 @@ func _spawn_duck_down():
 
 	var duck = _create_enemy()
 	duck.is_static = true
-	duck.static_duration = 3
 
 	if point != null:
 		duck.queue_free()
 		_spawn_duck_down()
 
-	point = duck
+	duck_spawn_points_2[duck_spawn_points_2.keys()[position]] = duck
 	duck_spawn_zone_2.add_child(duck)
 	duck.global_position = duck_spawn_points_2.keys()[position].global_position
 

@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://lykf5mkmw6b6"]
+
+[ext_resource type="PackedScene" uid="uid://cx4yv25d8i687" path="res://src/Game/Game.tscn" id="1_xfd1r"]
+[ext_resource type="Texture2D" uid="uid://b71eykxygu75j" path="res://assets/Stall/grass2.png" id="2_0cfpf"]
+[ext_resource type="PackedScene" uid="uid://6w4addjumqxk" path="res://src/TargetGame/Scripts/TargetScript1.tscn" id="2_lkktc"]
+[ext_resource type="Texture2D" uid="uid://brunnmt6kjd65" path="res://assets/Stall/tree_oak.png" id="2_wohh6"]
+[ext_resource type="PackedScene" uid="uid://s0p257bb12tv" path="res://src/TargetGame/Scripts/TargetScript2.tscn" id="3_1s1ic"]
+[ext_resource type="Texture2D" uid="uid://wn6fdv6p5wyn" path="res://assets/Stall/tree_pine.png" id="3_fqw0d"]
+[ext_resource type="Texture2D" uid="uid://bb8kyykyouaxq" path="res://assets/Stall/grass1.png" id="3_qml5i"]
+[ext_resource type="PackedScene" uid="uid://cuc47x3u5ov87" path="res://src/TargetGame/Scripts/TargetScript3.tscn" id="4_0f0r1"]
+[ext_resource type="PackedScene" uid="uid://dvfq66viprhn0" path="res://src/TargetGame/Scripts/TargetScript4.tscn" id="5_7s72b"]
+[ext_resource type="PackedScene" uid="uid://bujkdc6sg2gy" path="res://src/TargetGame/Scripts/TargetScript5.tscn" id="6_tu8a0"]
+[ext_resource type="PackedScene" uid="uid://05ifdebp55ya" path="res://src/TargetGame/Scripts/TargetScript6.tscn" id="7_ekkud"]
+[ext_resource type="AudioStream" uid="uid://dape6cw37rbf1" path="res://assets/Music/track2.ogg" id="8_n6sh5"]
+
+[node name="TargetGame" instance=ExtResource("1_xfd1r")]
+ta_score = 75000
+scripts = Array[PackedScene]([ExtResource("2_lkktc"), ExtResource("3_1s1ic"), ExtResource("4_0f0r1"), ExtResource("5_7s72b"), ExtResource("6_tu8a0"), ExtResource("7_ekkud")])
+rank_score = {
+"bronze": 8500,
+"gold": 35000,
+"platinum": 60000,
+"silver": 20000
+}
+
+[node name="Track" parent="Music" index="0"]
+stream = ExtResource("8_n6sh5")
+
+[node name="Background" parent="." index="3"]
+speed_water1 = Vector2(0, 0)
+speed_water2 = Vector2(0, 0)
+
+[node name="Trees" type="ParallaxLayer" parent="Background" index="2"]
+
+[node name="Tree" type="Sprite2D" parent="Background/Trees" index="0"]
+position = Vector2(548, 1056)
+texture = ExtResource("2_wohh6")
+
+[node name="Tree4" type="Sprite2D" parent="Background/Trees" index="1"]
+position = Vector2(1853, 1046)
+texture = ExtResource("2_wohh6")
+
+[node name="Tree5" type="Sprite2D" parent="Background/Trees" index="2"]
+position = Vector2(3215, 1046)
+texture = ExtResource("2_wohh6")
+
+[node name="Tree2" type="Sprite2D" parent="Background/Trees" index="3"]
+position = Vector2(1150, 1079)
+texture = ExtResource("3_fqw0d")
+
+[node name="Tree3" type="Sprite2D" parent="Background/Trees" index="4"]
+position = Vector2(2620, 1048)
+texture = ExtResource("3_fqw0d")
+
+[node name="Sprite2D" parent="Background/Water2" index="0"]
+texture = ExtResource("2_0cfpf")
+
+[node name="Sprite2D" parent="Background/Water1" index="0"]
+position = Vector2(0, 1450)
+texture = ExtResource("3_qml5i")
+
+[node name="SpawnZone" type="Node" parent="Background" index="5"]
+
+[node name="Ready" parent="CanvasLayer/UI" index="0"]
+offset_left = -115.0
+offset_top = -33.0
+offset_right = 1035.0
+offset_bottom = 294.0
+
+[node name="Go" parent="CanvasLayer/UI" index="1"]
+offset_left = -529.0
+offset_top = -347.0
+offset_right = 26.0
+offset_bottom = -19.0
+
+[node name="Combo" parent="." index="9"]
+wait_time = 2.5

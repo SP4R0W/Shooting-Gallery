@@ -16,7 +16,7 @@
 
 [sub_resource type="Animation" id="Animation_ocs4g"]
 resource_name = "CurtainDown"
-length = 1.5
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,7 +24,7 @@ tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 2000)]
@@ -36,7 +36,7 @@ tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(3840, 64), Vector2(3840, 1000)]
@@ -44,7 +44,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_8d43u"]
 resource_name = "CurtainUp"
-length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,7 +51,7 @@ tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(0, 2000), Vector2(0, 0)]
@@ -64,7 +63,7 @@ tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(3840, 1000), Vector2(3840, 64)]
@@ -303,7 +302,11 @@ theme_override_font_sizes/font_size = 72
 text = "Master Volume: 100"
 horizontal_alignment = 1
 
-[node name="MasterSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/Master"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/Master"]
+layout_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/Master/CenterContainer"]
+custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 rounded = true
 
@@ -319,7 +322,11 @@ theme_override_font_sizes/font_size = 72
 text = "MUSIC Volume: 100"
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/Music"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/Music"]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/Music/CenterContainer"]
+custom_minimum_size = Vector2(750, 0)
 layout_mode = 2
 
 [node name="SFX" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
@@ -334,15 +341,23 @@ theme_override_font_sizes/font_size = 72
 text = "SFX Volume: 100"
 horizontal_alignment = 1
 
-[node name="SfxSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/SFX"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/VBoxContainer/SFX"]
 layout_mode = 2
 
-[node name="AutoReload" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="SfxSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/SFX/CenterContainer"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="AutoReload" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("13_70jdt")
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/AutoReload"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Buttons/AutoReload"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -352,6 +367,24 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("12_gm2wb")
 theme_override_font_sizes/font_size = 70
 text = "Auto Reload: On"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reset" type="TextureButton" parent="CanvasLayer/Control/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_70jdt")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Buttons/Reset"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_gm2wb")
+theme_override_font_sizes/font_size = 70
+text = "CLEAR SAVE DATA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -373,13 +406,112 @@ text = "BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Warning" type="PanelContainer" parent="CanvasLayer/Control"]
+visible = false
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Warning"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("12_gm2wb")
+theme_override_font_sizes/font_size = 96
+text = "WARNING!"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("12_gm2wb")
+theme_override_font_sizes/font_size = 48
+text = "This option will reset your options and statistics. use this with caution.
+are you sure you want to continue?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Yes" type="TextureButton" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_70jdt")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Warning/VBoxContainer/Yes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_gm2wb")
+theme_override_font_sizes/font_size = 98
+text = "YES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="No" type="TextureButton" parent="CanvasLayer/Control/Warning/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("13_70jdt")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Warning/VBoxContainer/No"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("12_gm2wb")
+theme_override_font_sizes/font_size = 98
+text = "NO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_byuhe")
 }
 
-[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/Master/MasterSlider" to="." method="_on_master_slider_drag_ended"]
-[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/Music/MusicSlider" to="." method="_on_music_slider_drag_ended"]
-[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/SFX/SfxSlider" to="." method="_on_sfx_slider_drag_ended"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/AutoReload" to="." method="_on_auto_reload_pressed"]
+[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/Master/CenterContainer/MasterSlider" to="." method="_on_master_slider_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/Music/CenterContainer/MusicSlider" to="." method="_on_music_slider_drag_ended"]
+[connection signal="drag_ended" from="CanvasLayer/Control/VBoxContainer/SFX/CenterContainer/SfxSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Buttons/AutoReload" to="." method="_on_auto_reload_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Buttons/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Warning/VBoxContainer/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Warning/VBoxContainer/No" to="." method="_on_no_pressed"]

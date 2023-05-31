@@ -4,6 +4,7 @@ extends Node2D
 @onready var bg = $Background
 
 @onready var is_transitioning = true
+@onready var menu_theme: AudioStreamPlayer = Globals.root.get_node("MenuTheme")
 
 func _ready():
 	bg.play_animation = false
@@ -11,6 +12,9 @@ func _ready():
 	animator.play("CurtainUp")
 
 	await animator.animation_finished
+
+	if not menu_theme.playing:
+		menu_theme.play()
 
 	is_transitioning = false
 	bg.play_animation = true
@@ -23,9 +27,14 @@ func _unhandled_input(event):
 		animator.seek(2)
 		animator.animation_finished.emit()
 
+		if not menu_theme.playing:
+			menu_theme.play()
+
 func _on_play_button_pressed():
 	if is_transitioning:
 		return
+
+	Globals.root.get_node("Click").play()
 
 	bg.play_animation = false
 	is_transitioning = true
@@ -40,6 +49,8 @@ func _on_options_button_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 
@@ -52,6 +63,8 @@ func _on_options_button_pressed():
 func _on_credits_button_pressed():
 	if is_transitioning:
 		return
+
+	Globals.root.get_node("Click").play()
 
 	bg.play_animation = false
 	is_transitioning = true

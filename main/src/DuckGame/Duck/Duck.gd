@@ -23,6 +23,7 @@ func spawn_static():
 	if duck_animator == null:
 		await ready
 
+	is_static = true
 	duck_animator.play("show" + type)
 
 	await duck_animator.animation_finished
@@ -34,19 +35,23 @@ func enemy_gone():
 
 	await duck_animator.animation_finished
 	Globals.active_script.enemy_killed()
-	killed.emit(self)
+
+	queue_free()
 
 func kill():
-	if not duck_animator.is_playing() and not _is_dead:
+	if not _is_dead:
+		killed.emit(self)
+
+		$break.play()
+
+		_is_dead = true
+		duck_animator.play("shot" + type)
+
 		$GoneTimer.stop()
 		speed = 0
 
 		show_score_text()
 
-		_is_dead = true
-		duck_animator.play("shot" + type)
-
 		await duck_animator.animation_finished
-		killed.emit(self)
 
 		queue_free()

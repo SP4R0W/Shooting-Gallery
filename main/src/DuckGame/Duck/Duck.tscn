@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0477sv5ek51b"]
+[gd_scene load_steps=23 format=3 uid="uid://d0477sv5ek51b"]
 
 [ext_resource type="Script" path="res://src/DuckGame/Duck/Duck.gd" id="1_jdw7i"]
 [ext_resource type="PackedScene" uid="uid://cxieteedfac8d" path="res://src/Target/Target.tscn" id="1_tbruo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cbbojwyr2o8pd" path="res://assets/Objects/duck_brown.png" id="4_0rg55"]
 [ext_resource type="Texture2D" uid="uid://cmdioh0y71dc0" path="res://assets/Objects/duck_white.png" id="5_i1anu"]
 [ext_resource type="Texture2D" uid="uid://cbfxx8n1yjhsr" path="res://assets/Objects/duck_yellow.png" id="6_r3ehp"]
+[ext_resource type="AudioStream" uid="uid://dhrrmgb1nefd" path="res://assets/Sounds/duck.mp3" id="8_dorsn"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s6k5k"]
 animations = [{
@@ -44,7 +45,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3lte3"]
-size = Vector2(128, 104)
+size = Vector2(74.6667, 69.3333)
 
 [sub_resource type="Animation" id="Animation_p7t11"]
 length = 0.001
@@ -172,6 +173,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1e-05)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2tned"]
 resource_name = "hide_white"
@@ -200,6 +213,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1e-05)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1mkea"]
 resource_name = "hide_yellow"
@@ -227,6 +252,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1.03526, 0.108819),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_plf45"]
@@ -300,6 +337,18 @@ tracks/5/path = NodePath(".:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -382,6 +431,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_8ah4a"]
 resource_name = "shot_yellow"
@@ -459,6 +520,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_2jsnp"]
 resource_name = "show_brown"
@@ -499,6 +572,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_l21vj"]
@@ -541,6 +626,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_nkjkj"]
 resource_name = "show_yellow"
@@ -581,6 +678,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ghwjf"]
@@ -626,7 +735,11 @@ sprite_frames = SubResource("SpriteFrames_s6k5k")
 animation = &"duck_brown"
 offset = Vector2(0, -47)
 
+[node name="Hitbox" parent="." index="1"]
+scale = Vector2(1.5, 1.5)
+
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -2.66667)
 shape = SubResource("RectangleShape2D_3lte3")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
@@ -654,3 +767,8 @@ spread = 180.0
 initial_velocity_min = 500.0
 initial_velocity_max = 500.0
 anim_offset_max = 1.0
+
+[node name="break" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource("8_dorsn")
+volume_db = -5.0
+bus = &"SFX"

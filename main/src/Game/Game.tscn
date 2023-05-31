@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cx4yv25d8i687"]
+[gd_scene load_steps=34 format=3 uid="uid://cx4yv25d8i687"]
 
 [ext_resource type="Texture2D" uid="uid://cdv8mxe1tlgrt" path="res://assets/Stall/water1.png" id="1_d4g72"]
 [ext_resource type="Script" path="res://src/Game/Game.gd" id="1_km67b"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dplsxvkppwnls" path="res://assets/Stall/water2.png" id="3_bfewo"]
 [ext_resource type="Texture2D" uid="uid://d2a527rqetbnk" path="res://assets/Stall/bg_wood.png" id="3_iupnb"]
 [ext_resource type="AudioStream" uid="uid://jdbr2s83jhsu" path="res://assets/Sounds/reload.mp3" id="3_ygdqw"]
+[ext_resource type="AudioStream" uid="uid://cartqjnql63db" path="res://assets/Sounds/ready.mp3" id="4_36pdh"]
 [ext_resource type="Script" path="res://src/Background/GameBg.gd" id="4_cb74g"]
+[ext_resource type="AudioStream" uid="uid://bo3yd6irh38ed" path="res://assets/Sounds/go.mp3" id="4_fgo7o"]
 [ext_resource type="Texture2D" uid="uid://dkavn4kowna50" path="res://assets/Stall/cloud1.png" id="6_aqdhe"]
 [ext_resource type="Script" path="res://src/Game/UI.gd" id="6_lyed7"]
 [ext_resource type="Texture2D" uid="uid://7834f2tredls" path="res://assets/Stall/backgroundEmpty.png" id="6_rh502"]
@@ -39,7 +41,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ptou4"]
 resource_name = "Fade_out"
-length = 0.55
+length = 0.25
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -48,7 +50,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.55),
+"times": PackedFloat32Array(0, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1e-05, 1e-05),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -60,7 +62,7 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -110,6 +112,44 @@ _data = {
 "Combo": SubResource("Animation_jydnk"),
 "Fade_out": SubResource("Animation_ptou4"),
 "RESET": SubResource("Animation_sjwnk")
+}
+
+[sub_resource type="Animation" id="Animation_2axa4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_plpox"]
+resource_name = "Show"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6v6s"]
+_data = {
+"RESET": SubResource("Animation_2axa4"),
+"Show": SubResource("Animation_plpox")
 }
 
 [sub_resource type="Animation" id="Animation_bxwb6"]
@@ -290,6 +330,30 @@ tracks/9/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Sounds/Ready:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sounds/Go:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_43jkr"]
 resource_name = "ShowText"
@@ -390,6 +454,30 @@ tracks/7/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Sounds/Ready:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Sounds/Go:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kevnw"]
 _data = {
@@ -409,11 +497,27 @@ scripts = Array[PackedScene]([null])
 
 [node name="Fire" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("15_lfonp")
+volume_db = -5.0
 bus = &"SFX"
 
 [node name="Reload" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_ygdqw")
 bus = &"SFX"
+
+[node name="Ready" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_36pdh")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Go" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_fgo7o")
+bus = &"SFX"
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Track" type="AudioStreamPlayer" parent="Music"]
+volume_db = -5.0
+bus = &"Music"
 
 [node name="Background" type="ParallaxBackground" parent="."]
 script = ExtResource("4_cb74g")
@@ -547,7 +651,7 @@ scale = Vector2(10, 10)
 texture = ExtResource("7_d2c4a")
 
 [node name="CurtainTop2" type="TextureRect" parent="CanvasLayer/UI"]
-z_index = 4
+z_index = 100
 layout_mode = 1
 offset_right = 3840.0
 offset_bottom = 64.0
@@ -555,7 +659,7 @@ scale = Vector2(1, 2)
 texture = ExtResource("7_m5cfk")
 
 [node name="CurtainTop1" type="TextureRect" parent="CanvasLayer/UI"]
-z_index = 4
+z_index = 100
 layout_mode = 1
 offset_right = 3840.0
 offset_bottom = 79.0
@@ -730,18 +834,17 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -231.5
+offset_left = -500.0
 offset_top = 300.0
-offset_right = 231.5
-offset_bottom = 400.0
+offset_right = 500.0
+offset_bottom = 376.0
 grow_horizontal = 2
 rotation = -0.0872665
-scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(500, 0)
 theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
-theme_override_constants/outline_size = 50
+theme_override_constants/outline_size = 36
 theme_override_fonts/font = ExtResource("15_oe6m7")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 72
 text = "Combo x2"
 horizontal_alignment = 1
 
@@ -749,6 +852,82 @@ horizontal_alignment = 1
 libraries = {
 "": SubResource("AnimationLibrary_cb0q8")
 }
+
+[node name="Bonus" type="Label" parent="CanvasLayer/UI"]
+visible = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1118.0
+offset_top = -418.0
+offset_right = 1142.0
+offset_bottom = -286.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 128
+text = "50 ENEMIES SHOT BONUS +10000 POINTS"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Bonus"]
+libraries = {
+"": SubResource("AnimationLibrary_p6v6s")
+}
+
+[node name="Pause" type="Label" parent="CanvasLayer/UI"]
+visible = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1130.0
+offset_top = -66.0
+offset_right = 1130.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 128
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/UI/Pause"]
+libraries = {
+"": SubResource("AnimationLibrary_p6v6s")
+}
+
+[node name="Help" type="Label" parent="CanvasLayer/UI"]
+z_index = 10
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -826.5
+offset_top = -110.0
+offset_right = 826.5
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("15_oe6m7")
+theme_override_font_sizes/font_size = 72
+text = "Press 'esc' To leave the game. Press 'r' to restart or 'p' to pause"
+horizontal_alignment = 1
 
 [node name="Weapon" parent="CanvasLayer/UI" instance=ExtResource("10_y0m3m")]
 position = Vector2(2569, 1162)
@@ -768,9 +947,10 @@ one_shot = true
 [node name="Time" type="Timer" parent="."]
 
 [node name="Combo" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
+[connection signal="timeout" from="Firerate" to="." method="_on_firerate_timeout"]
 [connection signal="timeout" from="Reload" to="." method="_on_reload_timeout"]
 [connection signal="timeout" from="Time" to="." method="_on_time_timeout"]
 [connection signal="timeout" from="Combo" to="." method="_on_combo_timeout"]

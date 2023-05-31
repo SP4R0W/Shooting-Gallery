@@ -72,7 +72,7 @@ func _spawn_duck():
 		duck.queue_free()
 		_spawn_duck()
 
-	point = duck
+	duck_spawn_points_1[duck_spawn_points_1.keys()[position]] = duck
 	duck_spawn_zone_1.add_child(duck)
 	duck.global_position = duck_spawn_points_1.keys()[position].global_position
 
@@ -97,7 +97,7 @@ func _spawn_duck_down():
 		duck.queue_free()
 		_spawn_duck_down()
 
-	point = duck
+	duck_spawn_points_2[duck_spawn_points_2.keys()[position]] = duck
 	duck_spawn_zone_2.add_child(duck)
 	duck.global_position = duck_spawn_points_2.keys()[position].global_position
 

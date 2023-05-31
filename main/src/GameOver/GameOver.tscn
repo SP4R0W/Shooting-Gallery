@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj4oc2q1hd0m1"]
+[gd_scene load_steps=19 format=3 uid="uid://cj4oc2q1hd0m1"]
 
 [ext_resource type="Script" path="res://src/GameOver/GameOver.gd" id="1_klyja"]
 [ext_resource type="Script" path="res://src/Background/GameBg.gd" id="2_mqoe0"]
@@ -13,10 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://pa1ygai8qb1a" path="res://assets/HUD/yellow_button02.png" id="11_pdymn"]
 [ext_resource type="Texture2D" uid="uid://dnoy7k5ft36ek" path="res://assets/Stall/curtainTop.png" id="12_neb8j"]
 [ext_resource type="Texture2D" uid="uid://ckoc0hne808bv" path="res://assets/Stall/curtain_straight.png" id="13_v7acq"]
+[ext_resource type="AudioStream" uid="uid://cyfhpqt8mas8d" path="res://assets/Music/win.ogg" id="14_rw7f3"]
 
 [sub_resource type="Animation" id="Animation_ocs4g"]
 resource_name = "CurtainDown"
-length = 1.5
+length = 0.75
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,7 +25,7 @@ tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 2000)]
@@ -36,7 +37,7 @@ tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(3840, 64), Vector2(3840, 1000)]
@@ -44,7 +45,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_8d43u"]
 resource_name = "CurtainUp"
-length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -52,7 +52,7 @@ tracks/0/path = NodePath("CanvasLayer/Control/CurtainTop1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(0, 2000), Vector2(0, 0)]
@@ -64,7 +64,7 @@ tracks/1/path = NodePath("CanvasLayer/Control/CurtainTop2:size")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(2.07, 0.1),
 "update": 0,
 "values": [Vector2(3840, 1000), Vector2(3840, 64)]
@@ -333,6 +333,15 @@ theme_override_font_sizes/font_size = 48
 text = "Your total score: 0"
 horizontal_alignment = 1
 
+[node name="Money" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("10_p2vff")
+theme_override_font_sizes/font_size = 48
+text = "You earned x coins"
+horizontal_alignment = 1
+
 [node name="HI" type="Label" parent="CanvasLayer/Control/VBoxContainer/Data"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(1, 0.392157, 0, 1)
@@ -382,5 +391,9 @@ expand_mode = 5
 libraries = {
 "": SubResource("AnimationLibrary_byuhe")
 }
+
+[node name="MenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_rw7f3")
+bus = &"Music"
 
 [connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

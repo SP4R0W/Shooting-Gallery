@@ -141,6 +141,7 @@ func _on_buy_reload_button_pressed():
 	SaveData.stats["money"] -= reload_cur_price
 	SaveData.stats["upgrade_reload"] += 1
 
+	SaveData.save_game()
 	update_shop()
 
 func _on_buy_mag_button_pressed():
@@ -156,6 +157,7 @@ func _on_buy_mag_button_pressed():
 	SaveData.stats["money"] -= mag_cur_price
 	SaveData.stats["upgrade_mag"] += 1
 
+	SaveData.save_game()
 	update_shop()
 
 func _on_buy_fire_button_pressed():
@@ -171,4 +173,5 @@ func _on_buy_fire_button_pressed():
 	SaveData.stats["money"] -= fire_cur_price
 	SaveData.stats["upgrade_firerate"] += 1
 
+	SaveData.save_game()
 	update_shop()

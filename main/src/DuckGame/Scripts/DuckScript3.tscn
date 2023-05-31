@@ -9,4 +9,4 @@ script = ExtResource("2_we8lm")
 enemy = ExtResource("3_afgkm")
 
 [node name="Duration" parent="." index="0"]
-wait_time = 5.0
+wait_time = 3.0

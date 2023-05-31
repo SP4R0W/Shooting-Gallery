@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6tlaodk6wuns"]
+[gd_scene load_steps=4 format=3 uid="uid://b6tlaodk6wuns"]
 
 [ext_resource type="Script" path="res://src/Main/Main.gd" id="1_qucfl"]
+[ext_resource type="AudioStream" uid="uid://dgmvifmud2s4s" path="res://assets/Music/menu.ogg" id="2_3i5kj"]
+[ext_resource type="AudioStream" uid="uid://bv5kosju8l5xb" path="res://assets/Sounds/click.mp3" id="3_x3onn"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_qucfl")
@@ -24,3 +26,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="MenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3i5kj")
+bus = &"Music"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_x3onn")
+bus = &"SFX"
