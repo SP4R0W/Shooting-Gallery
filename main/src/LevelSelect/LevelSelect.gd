@@ -169,6 +169,8 @@ func _on_play_ta_pressed():
 
 	await animator.animation_finished
 
+	menu_theme.stop()
+
 	Composer.goto_scene(Globals.LEVEL_PATHS[level_prefix],{"is_animated":true,"animation":1})
 
 func _draw_level():

@@ -131,7 +131,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_plpox"]
 resource_name = "Show"
-loop_mode = 1
+length = 2.5
+loop_mode = 2
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -140,10 +141,10 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, false, true, false, true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p6v6s"]
@@ -623,10 +624,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1805.0
-offset_top = 1047.0
-offset_right = 2955.0
-offset_bottom = 1374.0
+offset_left = -115.0
+offset_top = -33.0
+offset_right = 1035.0
+offset_bottom = 294.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
@@ -641,10 +642,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1391.0
-offset_top = 733.0
-offset_right = 1946.0
-offset_bottom = 1061.0
+offset_left = -529.0
+offset_top = -347.0
+offset_right = 26.0
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(10, 10)

@@ -32,15 +32,3 @@ speed_water2 = Vector2(1.5, 0)
 [node name="DuckZone1" type="Node2D" parent="Background" index="2"]
 
 [node name="DuckZone2" type="Node2D" parent="Background" index="4"]
-
-[node name="Ready" parent="CanvasLayer/UI" index="0"]
-offset_left = -115.0
-offset_top = -33.0
-offset_right = 1035.0
-offset_bottom = 294.0
-
-[node name="Go" parent="CanvasLayer/UI" index="1"]
-offset_left = -529.0
-offset_top = -347.0
-offset_right = 26.0
-offset_bottom = -19.0
