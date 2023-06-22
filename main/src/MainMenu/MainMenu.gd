@@ -16,6 +16,9 @@ func _ready():
 	if not menu_theme.playing:
 		menu_theme.play()
 
+	if OS.get_name() == "Web":
+		$CanvasLayer/Control/VBoxContainer/ExitButton.hide()
+
 	is_transitioning = false
 	bg.play_animation = true
 
