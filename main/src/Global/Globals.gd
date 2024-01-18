@@ -5,8 +5,8 @@ extends Node
 @onready var active_script: GameScript = null
 
 const LEVEL_PATHS = {
-	"duck":"res://src/DuckGame/DuckGame.tscn",
-	"target":"res://src/TargetGame/TargetGame.tscn",
+	"duck":"DuckGame",
+	"target":"TargetGame",
 }
 
 var ta_game: bool = false

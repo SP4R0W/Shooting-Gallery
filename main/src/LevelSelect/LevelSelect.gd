@@ -83,7 +83,7 @@ func _on_back_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/MainMenu/MainMenu.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("LevelSelect","MainMenu")
 
 func _write_ranks():
 	var rank = SaveData.stats[level_prefix + "_rank"].to_upper()
@@ -130,7 +130,7 @@ func _on_shop_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/Shop/Shop.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("LevelSelect","Shop")
 
 func _on_play_button_pressed():
 	if is_transitioning:
@@ -150,8 +150,7 @@ func _on_play_button_pressed():
 
 	menu_theme.stop()
 
-	Composer.goto_scene(Globals.LEVEL_PATHS[level_prefix],{"is_animated":true,"animation":1})
-
+	Globals.root.change_scene("LevelSelect",Globals.LEVEL_PATHS[Globals.level_id])
 
 func _on_play_ta_pressed():
 	if is_transitioning:
@@ -171,7 +170,7 @@ func _on_play_ta_pressed():
 
 	menu_theme.stop()
 
-	Composer.goto_scene(Globals.LEVEL_PATHS[level_prefix],{"is_animated":true,"animation":1})
+	Globals.root.change_scene("LevelSelect",Globals.LEVEL_PATHS[Globals.level_id])
 
 func _draw_level():
 	level_prefix = LEVEL_PREFIXED[level]

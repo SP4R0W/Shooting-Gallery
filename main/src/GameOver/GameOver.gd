@@ -101,4 +101,4 @@ func _on_menu_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/LevelSelect/LevelSelect.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("GameOver","LevelSelect")

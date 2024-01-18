@@ -8,7 +8,9 @@ var duck_spawn_zone_2: Node2D = null
 
 func _on_activate():
 	if not Globals.game:
-		await get_tree().process_frame
+		await ComposerGD.SceneCreated
+
+	print(Globals.game)
 
 	duck_spawn_zone_1 = Globals.game.get_node("Background/DuckZone1")
 	duck_spawn_zone_2 = Globals.game.get_node("Background/DuckZone2")

@@ -61,13 +61,26 @@ var bullets: int = max_bullets:
 		bullets = val
 		bullets_changed.emit(bullets)
 
+func init_game():
+	$Sounds/Fire.volume_db = -80
+	$Sounds/Reload.volume_db = -80
+
+	$Sounds/Fire.play()
+	$Sounds/Reload.play()
+
+	$Init/Duck.kill(true)
+	$Init/Target.kill(true)
+
 func _ready():
+	Globals.game = self
+
+	await init_game()
+
 	if Globals.ta_game:
 		_score = ta_score
 		_rank = "platinum"
 		ui.set_rank(_rank)
 
-	Globals.game = self
 	bg.play_animation = false
 
 	$CanvasLayer/UI/BottomUI/Text/Title.text = Globals.end_level
@@ -87,6 +100,9 @@ func _ready():
 	animator.play("ShowText")
 
 	await animator.animation_finished
+
+	$Sounds/Fire.volume_db = -5
+	$Sounds/Reload.volume_db = 0
 
 	ui.show_ui()
 	Input.set_custom_mouse_cursor(normal_cursor,Input.CURSOR_ARROW,Vector2(21,21))
@@ -110,9 +126,7 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("exit"):
 		Globals.root.get_node("Click").play()
 
-		Composer.goto_scene("res://src/LevelSelect/LevelSelect.tscn",{"is_animated":true,"animation":1})
-	elif Input.is_action_just_pressed("reset"):
-		Composer.goto_scene(Globals.LEVEL_PATHS[Globals.level_id],{"is_animated":true,"animation":1})
+		Globals.root.change_scene(Globals.LEVEL_PATHS[Globals.level_id],"LevelSelect")
 	elif Input.is_action_just_pressed("pause"):
 		Globals.root.get_node("Click").play()
 		_pause_game()
@@ -223,7 +237,7 @@ func _game_over():
 	Globals.end_level = "Duck Hunt"
 	Globals.end_shot = total_killed
 
-	Composer.goto_scene("res://src/GameOver/GameOver.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene(Globals.LEVEL_PATHS[Globals.level_id],"GameOver")
 
 func _init_game_upgrades():
 	var mag_update = SaveData.stats["upgrade_mag"]

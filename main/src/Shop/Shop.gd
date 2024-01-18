@@ -62,6 +62,8 @@ func _on_back_button_pressed():
 	if is_transitioning:
 		return
 
+	Globals.root.get_node("Click").play()
+
 	bg.play_animation = false
 	is_transitioning = true
 
@@ -69,7 +71,7 @@ func _on_back_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/MainMenu/MainMenu.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("Shop","MainMenu")
 
 func update_shop():
 	money_text.text = "x" + str(SaveData.stats["money"])

@@ -3,14 +3,14 @@ extends Control
 
 signal score_update_ended()
 
-@onready var ui_panel: HSplitContainer = $BottomUI
+@onready var ui_panel: HSplitContainer = %BottomUI
 
-@onready var level_title: Label = $BottomUI/Text/Title
-@onready var score_text: Label = $BottomUI/Text/Score
-@onready var time_text: Label = $BottomUI/Text/Time
-@onready var rank_text: Label = $BottomUI/Text/Rank/Rank2
+@onready var level_title: Label = %Title
+@onready var score_text: Label = %Score
+@onready var time_text: Label = %Time
+@onready var rank_text: Label = %Rank2
 
-@onready var ammo_counter: HBoxContainer = $BottomUI/AmmoCounter
+@onready var ammo_counter: HBoxContainer = %AmmoCounter
 
 @onready var bullet_img: Texture2D = preload("res://assets/HUD/icon_bullet_gold_long.png")
 @onready var empty_img: Texture2D = preload("res://assets/HUD/icon_bullet_empty_long.png")
@@ -23,7 +23,8 @@ var score_to_update = 0
 var score_text_value = 0
 
 func _ready():
-	await get_tree().process_frame
+	if Globals.game == null:
+		await get_tree().process_frame
 
 	Globals.game.connect("bullets_changed",_update_bullets)
 	Globals.game.connect("time_updated",_update_time)

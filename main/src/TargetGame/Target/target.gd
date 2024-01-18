@@ -79,7 +79,7 @@ func enemy_gone():
 
 	queue_free()
 
-func kill():
+func kill(quiet_kill: bool = false):
 	if not _is_dead:
 		$GoneTimer.stop()
 		killed.emit(self)
@@ -93,7 +93,7 @@ func kill():
 
 		$CPUParticles2D.emitting = true
 
-		show_score_text()
+		if !quiet_kill: show_score_text()
 
 		await get_tree().create_timer(0.5).timeout
 

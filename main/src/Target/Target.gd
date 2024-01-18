@@ -25,11 +25,12 @@ var _is_paused: bool = false
 var _has_paused_animation: bool = false
 
 func _ready():
-	Globals.game.total_spawned += 1
+	if Globals.game != null:
+		Globals.game.total_spawned += 1
+		killed.connect(Globals.game._on_enemy_killed)
+
 	set_physics_process(!is_static)
 	set_process_unhandled_input(false)
-
-	killed.connect(Globals.game._on_enemy_killed)
 
 	_on_ready()
 
@@ -75,10 +76,10 @@ func show_score_text():
 func enemy_gone():
 	pass
 
-func kill():
+func kill(quiet_kill: bool = false):
 	if not _is_dead:
 		killed.emit(self)
-		show_score_text()
+		if not quiet_kill: show_score_text()
 
 		_is_dead = true
 
@@ -105,7 +106,7 @@ func pause():
 func unpause():
 	_is_paused = false
 
-	set_physics_process(true)
+	set_physics_process(!is_static)
 	set_process_unhandled_input(true)
 
 	$GoneTimer.paused = false

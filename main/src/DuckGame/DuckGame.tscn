@@ -26,21 +26,30 @@ ta_rank_score = {
 [node name="Track" parent="Music" index="0"]
 stream = ExtResource("7_d7m80")
 
-[node name="Background" parent="." index="3"]
+[node name="Background" parent="." index="4"]
 speed_water2 = Vector2(1.5, 0)
 
 [node name="DuckZone1" type="Node2D" parent="Background" index="2"]
 
 [node name="DuckZone2" type="Node2D" parent="Background" index="4"]
 
-[node name="Ready" parent="CanvasLayer/UI" index="0"]
-offset_left = 1805.0
-offset_top = 1047.0
-offset_right = 2955.0
-offset_bottom = 1374.0
+[node name="BottomUI" parent="CanvasLayer/UI" index="7"]
+unique_name_in_owner = true
 
-[node name="Go" parent="CanvasLayer/UI" index="1"]
-offset_left = 1391.0
-offset_top = 733.0
-offset_right = 1946.0
-offset_bottom = 1061.0
+[node name="Title" parent="CanvasLayer/UI/BottomUI/Text" index="0"]
+unique_name_in_owner = true
+
+[node name="Time" parent="CanvasLayer/UI/BottomUI/Text" index="1"]
+unique_name_in_owner = true
+
+[node name="Score" parent="CanvasLayer/UI/BottomUI/Text" index="2"]
+unique_name_in_owner = true
+
+[node name="Rank2" parent="CanvasLayer/UI/BottomUI/Text/Rank" index="1"]
+unique_name_in_owner = true
+
+[node name="AmmoCounter" parent="CanvasLayer/UI/BottomUI" index="1"]
+unique_name_in_owner = true
+
+[node name="Help" parent="CanvasLayer/UI" index="11"]
+text = "Press 'esc' To leave the game. Press 'p' to pause"

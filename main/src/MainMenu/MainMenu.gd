@@ -7,6 +7,9 @@ extends Node2D
 @onready var menu_theme: AudioStreamPlayer = Globals.root.get_node("MenuTheme")
 
 func _ready():
+	if OS.get_name() == "Web":
+		$CanvasLayer/Control/VBoxContainer/ExitButton.hide()
+
 	bg.play_animation = false
 
 	animator.play("CurtainUp")
@@ -15,9 +18,6 @@ func _ready():
 
 	if not menu_theme.playing:
 		menu_theme.play()
-
-	if OS.get_name() == "Web":
-		$CanvasLayer/Control/VBoxContainer/ExitButton.hide()
 
 	is_transitioning = false
 	bg.play_animation = true
@@ -46,7 +46,7 @@ func _on_play_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/LevelSelect/LevelSelect.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("MainMenu","LevelSelect")
 
 func _on_options_button_pressed():
 	if is_transitioning:
@@ -61,7 +61,7 @@ func _on_options_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/Options/Options.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("MainMenu","Options")
 
 func _on_credits_button_pressed():
 	if is_transitioning:
@@ -76,7 +76,7 @@ func _on_credits_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/Credits/Credits.tscn",{"is_animated":true,"animation":1})
+	Globals.root.change_scene("MainMenu","Credits")
 
 func _on_exit_button_pressed():
 	if is_transitioning:

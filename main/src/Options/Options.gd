@@ -61,8 +61,7 @@ func _on_back_button_pressed():
 
 	await animator.animation_finished
 
-	Composer.goto_scene("res://src/MainMenu/MainMenu.tscn",{"is_animated":true,"animation":1})
-
+	Globals.root.change_scene("Options","MainMenu")
 
 func _on_master_slider_drag_ended(value_changed):
 	if not value_changed:

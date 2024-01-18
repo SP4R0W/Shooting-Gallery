@@ -26,7 +26,7 @@ rank_score = {
 [node name="Track" parent="Music" index="0"]
 stream = ExtResource("8_n6sh5")
 
-[node name="Background" parent="." index="3"]
+[node name="Background" parent="." index="4"]
 speed_water1 = Vector2(0, 0)
 speed_water2 = Vector2(0, 0)
 
@@ -61,17 +61,5 @@ texture = ExtResource("3_qml5i")
 
 [node name="SpawnZone" type="Node" parent="Background" index="5"]
 
-[node name="Ready" parent="CanvasLayer/UI" index="0"]
-offset_left = 1805.0
-offset_top = 1047.0
-offset_right = 2955.0
-offset_bottom = 1374.0
-
-[node name="Go" parent="CanvasLayer/UI" index="1"]
-offset_left = 1391.0
-offset_top = 733.0
-offset_right = 1946.0
-offset_bottom = 1061.0
-
-[node name="Combo" parent="." index="9"]
+[node name="Combo" parent="." index="10"]
 wait_time = 2.5

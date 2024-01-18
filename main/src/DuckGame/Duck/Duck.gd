@@ -38,7 +38,7 @@ func enemy_gone():
 
 	queue_free()
 
-func kill():
+func kill(quiet_kill: bool = false):
 	if not _is_dead:
 		killed.emit(self)
 
@@ -50,7 +50,7 @@ func kill():
 		$GoneTimer.stop()
 		speed = 0
 
-		show_score_text()
+		if !quiet_kill: show_score_text()
 
 		await duck_animator.animation_finished
 
